@@ -46,28 +46,29 @@ namespace MarkovGenerator
             File.WriteAllText(filename, contents);
         }
 
-        public void AddToChain(Link link) // Adds the link to the chain, then serializes to file
+        public void AddToChain(Link link)   // Adds the link to the chain, then serializes to file
         {
-            if (link.Word != String.Empty)
+            if (link.Word != String.Empty)  // Ensures no empty entries
             {
                 var duplicates = Chain.Where(x => x.Word == link.Word).ToList();
-                if (duplicates.Count > 0)
+                if (duplicates.Count > 0)   // If an entry exists, merge them
                 {
                     var i = Chain.IndexOf(duplicates[0]);
                     Chain[i].AddBefore(link.Before);
                     Chain[i].AddAfter(link.After);
                 }
-                else
+                else                        // Otherwise create a new one
                 {
                     Chain.Add(link);
                 }
-                WriteChain();
+                WriteChain();               // Commit to pdo file
             }
         }
 
-        public void AddToChain(string s)
+        public void AddToChain(string s)    // Add a full string of text to chain as links
         {
             var lower = s.ToLower();
+            // Remove all characters other than letters and spaces
             var cleancopy = Regex.Replace(lower, "[^a-z ]+", "", RegexOptions.Compiled);
             var words = cleancopy.Split(' ');
             if (words.Length > 2)
@@ -92,6 +93,8 @@ namespace MarkovGenerator
             }
         }
 
+        // Doesn't work but we don't need it anymore anyway
+        /*
         public void Purge()
         {
             List<Link> flagged = new List<Link>();
@@ -116,30 +119,7 @@ namespace MarkovGenerator
             }
             WriteChain();
         }
-
-        public void SlowPurge()
-        {
-            List<Link> flagged = new List<Link>();
-            for (int i = 0; i < Chain.Count; i++)
-            {
-                foreach (Link duplink in Chain)
-                {
-                    // Ensure it's a duplicate (aka same word but not same index)
-                    if ((Chain.IndexOf(duplink) != i) && duplink.Word == Chain[i].Word)
-                    {
-                        flagged.Add(duplink);
-                        Chain[i].AddBefore(duplink.Before);
-                        Chain[i].AddAfter(duplink.After);
-                        Chain[i].Frequency++;
-                    }
-                }
-            }
-
-            foreach (Link garbage in flagged)
-            {
-                Chain.Remove(garbage);
-            }
-        }
+        */
 
         public void PrintChain()
         {
