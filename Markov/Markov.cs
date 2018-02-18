@@ -67,7 +67,8 @@ namespace MarkovGenerator
 
         public void AddToChain(string s)    // Add a full string of text to chain as links
         {
-            var lower = s.ToLower();
+            // Consistent casing and treat linebreaks as spaces
+            var lower = s.ToLower().Replace(Environment.NewLine, " ");
             // Remove all characters other than letters and spaces
             var cleancopy = Regex.Replace(lower, "[^a-z ]+", "", RegexOptions.Compiled);
             var words = cleancopy.Split(' ');
@@ -133,14 +134,22 @@ namespace MarkovGenerator
         {
             Random randy = new Random();
             string _word = Chain[randy.Next(0, Chain.Count)].Word;
-            string genChain = String.Empty;
+            string genChain = _word;
             for (int i = 0; i < length; i++) // You originally had two layers of this i think?
             {
                 var links = Chain.Where(x => x.Word == _word).ToList();
                 foreach (Link lnk in links)
                 {
-                    genChain += _word + " ";
-                    _word = lnk.RandomAfter();
+                    genChain += " " + _word;
+                    if (lnk.After.Count > 0)
+                    {
+                        _word = lnk.RandomAfter();
+                    }
+                    else
+                    {
+                        genChain += ",";
+                        _word = Chain[randy.Next(0, Chain.Count)].Word;
+                    }
                 }
             }
             return genChain;

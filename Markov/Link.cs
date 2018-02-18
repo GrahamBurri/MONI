@@ -69,7 +69,7 @@ namespace MarkovGenerator
             }
             catch // Empty list
             {
-                return "xmatch 0";
+                return "~empty";
             }
         }
 
@@ -82,7 +82,7 @@ namespace MarkovGenerator
             }
             catch
             {
-                return "xmatch 0";
+                return "~empty";
             }
         }
     }
