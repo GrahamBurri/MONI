@@ -113,7 +113,6 @@ namespace MarkovGenerator
                     Chain[i].Frequency++;
                 }
             }
-
             foreach (Link garbage in flagged)
             {
                 Chain.Remove(garbage);

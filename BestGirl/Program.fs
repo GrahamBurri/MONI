@@ -37,8 +37,9 @@ module Monika =
                 _tagged <- true
         _tagged
     
-    let generator = new Markov()
-    
+    // let generator = new Markov()
+    let generator = new MarkovNextGen();
+        
     let messageReceived (msg : SocketMessage) =
         task {
             let author = msg.Author.Username
@@ -81,7 +82,7 @@ module Monika =
             //_client.add_MessageReceived (fun m -> messageReceived m |> Extras.startAsPlainTask)
 
             // Tokens
-            let DEVELOPMENT = "Token Here"
+            let DEVELOPMENT = "Dev Token Here"
             let token = DEVELOPMENT
 
             do! _client.LoginAsync (TokenType.Bot, token)

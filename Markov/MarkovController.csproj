@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Link.cs" />
+    <Compile Include="LinkNextGen.cs" />
     <Compile Include="Markov.cs" />
+    <Compile Include="MarkovNextGen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
