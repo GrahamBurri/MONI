@@ -1,0 +1,2723 @@
+[
+  {
+    "Before": [],
+    "After": [
+      "its",
+      "monika",
+      "its",
+      "monika"
+    ],
+    "Word": "maybe",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "maybe",
+      "think",
+      "maybe",
+      "think"
+    ],
+    "After": [
+      "the",
+      "under",
+      "the",
+      "under"
+    ],
+    "Word": "its",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "its",
+      "from",
+      "like",
+      "heres",
+      "out",
+      "leave",
+      "its",
+      "from",
+      "like",
+      "heres",
+      "out",
+      "leave",
+      "leave",
+      "get",
+      "to",
+      "lost",
+      "be",
+      "to"
+    ],
+    "After": [
+      "line",
+      "string",
+      "empty",
+      "pdo",
+      "tokens",
+      "generator",
+      "line",
+      "string",
+      "empty",
+      "pdo",
+      "tokens",
+      "generator",
+      "code",
+      "latest",
+      "aperture",
+      "portal",
+      "war",
+      "one",
+      "weird"
+    ],
+    "Word": "the",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the",
+      "the"
+    ],
+    "After": [
+      "breaks",
+      "breaks"
+    ],
+    "Word": "line",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "line",
+      "line"
+    ],
+    "After": [],
+    "Word": "breaks",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "yeah",
+      "looks",
+      "yeah",
+      "looks"
+    ],
+    "Word": "hmm",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "hmm",
+      "hmm",
+      "but"
+    ],
+    "After": [
+      "thats",
+      "thats",
+      "ill"
+    ],
+    "Word": "yeah",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "yeah",
+      "yeah"
+    ],
+    "After": [
+      "possible",
+      "possible"
+    ],
+    "Word": "thats",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "thats",
+      "thats"
+    ],
+    "After": [],
+    "Word": "possible",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "song"
+    ],
+    "After": [
+      "should",
+      "should",
+      "sing"
+    ],
+    "Word": "we",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "we",
+      "we"
+    ],
+    "After": [
+      "be",
+      "be"
+    ],
+    "Word": "should",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "should",
+      "shouldnt",
+      "should",
+      "shouldnt",
+      "can",
+      "to",
+      "youd"
+    ],
+    "After": [
+      "trimming",
+      "doing",
+      "trimming",
+      "doing",
+      "with",
+      "the",
+      "hated"
+    ],
+    "Word": "be",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "be",
+      "be"
+    ],
+    "After": [],
+    "Word": "trimming",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "have",
+      "before",
+      "train",
+      "want",
+      "have",
+      "before",
+      "train",
+      "want",
+      "made",
+      "record"
+    ],
+    "After": [
+      "shouldnt",
+      "set",
+      "does",
+      "here",
+      "to",
+      "shouldnt",
+      "set",
+      "does",
+      "here",
+      "to",
+      "designate"
+    ],
+    "Word": "it",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "it",
+      "i",
+      "it",
+      "i"
+    ],
+    "After": [
+      "be",
+      "put",
+      "be",
+      "put"
+    ],
+    "Word": "shouldnt",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "be",
+      "be"
+    ],
+    "After": [
+      "that",
+      "that"
+    ],
+    "Word": "doing",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "doing",
+      "string",
+      "doing",
+      "string",
+      "for",
+      "channel",
+      "meaning",
+      "pen"
+    ],
+    "After": [
+      "isnt",
+      "isnt",
+      "starts",
+      "itll",
+      "will"
+    ],
+    "Word": "that",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "i",
+      "i"
+    ],
+    "Word": "well",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "well",
+      "oops",
+      "guess",
+      "well",
+      "oops",
+      "guess",
+      "okay",
+      "also",
+      "day",
+      "where",
+      "place",
+      "war",
+      "and",
+      "somehow"
+    ],
+    "After": [
+      "have",
+      "guess",
+      "shouldnt",
+      "think",
+      "invited",
+      "have",
+      "guess",
+      "shouldnt",
+      "think",
+      "invited",
+      "restored",
+      "made",
+      "made",
+      "did",
+      "imagine",
+      "can",
+      "lost",
+      "hate",
+      "will",
+      "found"
+    ],
+    "Word": "i",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i",
+      "i"
+    ],
+    "After": [
+      "it",
+      "it"
+    ],
+    "Word": "have",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "it",
+      "it"
+    ],
+    "After": [
+      "to",
+      "to"
+    ],
+    "Word": "set",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "set",
+      "going",
+      "free",
+      "it",
+      "set",
+      "going",
+      "free",
+      "it",
+      "functionality",
+      "again",
+      "welcome",
+      "supposed",
+      "oblivious",
+      "way"
+    ],
+    "After": [
+      "remove",
+      "leave",
+      "train",
+      "know",
+      "remove",
+      "leave",
+      "train",
+      "know",
+      "monika",
+      "get",
+      "the",
+      "be",
+      "the",
+      "get"
+    ],
+    "Word": "to",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "to",
+      "to"
+    ],
+    "After": [
+      "anything",
+      "anything"
+    ],
+    "Word": "remove",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "remove",
+      "does",
+      "with",
+      "remove",
+      "does",
+      "with"
+    ],
+    "After": [
+      "from",
+      "else",
+      "you",
+      "from",
+      "else",
+      "you"
+    ],
+    "Word": "anything",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "anything",
+      "anything"
+    ],
+    "After": [
+      "the",
+      "the"
+    ],
+    "Word": "from",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the",
+      "empty",
+      "the",
+      "empty"
+    ],
+    "After": [
+      "that",
+      "problem",
+      "that",
+      "problem"
+    ],
+    "Word": "string",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "that",
+      "that"
+    ],
+    "After": [
+      "a",
+      "a"
+    ],
+    "Word": "isnt",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "isnt",
+      "or",
+      "isnt",
+      "or",
+      "made",
+      "start",
+      "in",
+      "as",
+      "imagine",
+      "is",
+      "write",
+      "just",
+      "in",
+      "is",
+      "such",
+      "just",
+      "found"
+    ],
+    "After": [
+      "lowercase",
+      "space",
+      "lowercase",
+      "space",
+      "testing",
+      "coding",
+      "fre",
+      "training",
+      "future",
+      "pen",
+      "poem",
+      "rat",
+      "cage",
+      "whore",
+      "drag",
+      "song",
+      "way"
+    ],
+    "Word": "a",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a",
+      "a"
+    ],
+    "After": [
+      "letter",
+      "letter"
+    ],
+    "Word": "lowercase",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "lowercase",
+      "lowercase"
+    ],
+    "After": [
+      "or",
+      "or"
+    ],
+    "Word": "letter",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "letter",
+      "letter",
+      "weak"
+    ],
+    "After": [
+      "a",
+      "a",
+      "strong"
+    ],
+    "Word": "or",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a",
+      "a"
+    ],
+    "After": [
+      "before",
+      "before"
+    ],
+    "Word": "space",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "space",
+      "space"
+    ],
+    "After": [
+      "it",
+      "it"
+    ],
+    "Word": "before",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "it",
+      "it"
+    ],
+    "After": [
+      "anything",
+      "anything"
+    ],
+    "Word": "does",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "anything",
+      "anything"
+    ],
+    "After": [],
+    "Word": "else",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "hmm",
+      "hmm"
+    ],
+    "After": [
+      "like",
+      "like"
+    ],
+    "Word": "looks",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "looks",
+      "looks"
+    ],
+    "After": [
+      "the",
+      "what",
+      "the",
+      "what"
+    ],
+    "Word": "like",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the",
+      "the"
+    ],
+    "After": [
+      "string",
+      "string"
+    ],
+    "Word": "empty",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "string",
+      "string"
+    ],
+    "After": [
+      "fixed",
+      "fixed"
+    ],
+    "Word": "problem",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "problem",
+      "problem"
+    ],
+    "After": [
+      "itself",
+      "itself"
+    ],
+    "Word": "fixed",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "fixed",
+      "fixed"
+    ],
+    "After": [],
+    "Word": "itself",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "rage",
+      "when"
+    ],
+    "After": [
+      "getting",
+      "just",
+      "getting",
+      "just",
+      "gonna",
+      "still",
+      "supposed",
+      "wrong"
+    ],
+    "Word": "im",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "im",
+      "im",
+      "were"
+    ],
+    "After": [
+      "some",
+      "some",
+      "some"
+    ],
+    "Word": "getting",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "getting",
+      "getting",
+      "restored",
+      "getting"
+    ],
+    "After": [
+      "sweet",
+      "sweet",
+      "functionality",
+      "juicy"
+    ],
+    "Word": "some",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "some",
+      "some"
+    ],
+    "After": [
+      "ass",
+      "ass"
+    ],
+    "Word": "sweet",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "sweet",
+      "sweet"
+    ],
+    "After": [
+      "chains",
+      "chains"
+    ],
+    "Word": "ass",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "ass",
+      "ass",
+      "pdo"
+    ],
+    "After": [
+      "over",
+      "over"
+    ],
+    "Word": "chains",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "chains",
+      "chains"
+    ],
+    "After": [
+      "here",
+      "here"
+    ],
+    "Word": "over",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "over",
+      "it",
+      "over",
+      "it"
+    ],
+    "After": [
+      "with",
+      "with"
+    ],
+    "Word": "here",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "the",
+      "the"
+    ],
+    "Word": "heres",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the",
+      "the",
+      "juicy"
+    ],
+    "After": [
+      "file",
+      "file",
+      "chains"
+    ],
+    "Word": "pdo",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "pdo",
+      "pdo"
+    ],
+    "After": [],
+    "Word": "file",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "i",
+      "i"
+    ],
+    "Word": "oops",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i",
+      "i"
+    ],
+    "After": [
+      "i",
+      "i"
+    ],
+    "Word": "guess",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "shouldnt",
+      "shouldnt",
+      "just"
+    ],
+    "After": [
+      "files",
+      "files",
+      "me"
+    ],
+    "Word": "put",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "put",
+      "put"
+    ],
+    "After": [
+      "in",
+      "in"
+    ],
+    "Word": "files",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "files",
+      "files",
+      "sesh",
+      "open",
+      "rat",
+      "lost"
+    ],
+    "After": [
+      "this",
+      "this",
+      "a",
+      "my",
+      "three",
+      "a",
+      "you"
+    ],
+    "Word": "in",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "in",
+      "on",
+      "in",
+      "on",
+      "scan",
+      "fuck"
+    ],
+    "After": [
+      "channel",
+      "channel",
+      "channel",
+      "channel",
+      "channel",
+      "place",
+      "markov"
+    ],
+    "Word": "this",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "this",
+      "this",
+      "this",
+      "this",
+      "testing",
+      "any",
+      "training",
+      "this"
+    ],
+    "After": [
+      "so",
+      "so",
+      "for",
+      "that",
+      "for"
+    ],
+    "Word": "channel",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "things"
+    ],
+    "After": [
+      "ahead",
+      "ahead",
+      "wrong"
+    ],
+    "Word": "go",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "go",
+      "go"
+    ],
+    "After": [
+      "and",
+      "and"
+    ],
+    "Word": "ahead",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "ahead",
+      "tokens",
+      "settings",
+      "running",
+      "ahead",
+      "tokens",
+      "settings",
+      "running",
+      "input",
+      "me",
+      "hello",
+      "fall"
+    ],
+    "After": [
+      "clear",
+      "commit",
+      "then",
+      "listening",
+      "clear",
+      "commit",
+      "then",
+      "listening",
+      "record",
+      "you",
+      "welcome",
+      "i"
+    ],
+    "Word": "and",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "and",
+      "and"
+    ],
+    "After": [
+      "out",
+      "out"
+    ],
+    "Word": "clear",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "clear",
+      "clear"
+    ],
+    "After": [
+      "the",
+      "the"
+    ],
+    "Word": "out",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the",
+      "the"
+    ],
+    "After": [
+      "and",
+      "and"
+    ],
+    "Word": "tokens",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "and",
+      "me",
+      "and",
+      "me"
+    ],
+    "After": [
+      "privileges",
+      "privileges",
+      "your"
+    ],
+    "Word": "commit",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "you",
+      "you"
+    ],
+    "Word": "did",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "did",
+      "invited",
+      "anything",
+      "did",
+      "invited",
+      "anything",
+      "so",
+      "sure",
+      "with",
+      "and",
+      "hate",
+      "who",
+      "when",
+      "need",
+      "in"
+    ],
+    "After": [
+      "give",
+      "might",
+      "give",
+      "might",
+      "can",
+      "fetch",
+      "all",
+      "are",
+      "will",
+      "fall",
+      "when"
+    ],
+    "Word": "you",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "you",
+      "you"
+    ],
+    "After": [
+      "me",
+      "me"
+    ],
+    "Word": "give",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "give",
+      "give",
+      "of",
+      "need",
+      "put"
+    ],
+    "After": [
+      "commit",
+      "commit",
+      "and",
+      "when",
+      "into"
+    ],
+    "Word": "me",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "commit",
+      "commit"
+    ],
+    "After": [],
+    "Word": "privileges",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "shit",
+      "shit"
+    ],
+    "Word": "oh",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "two",
+      "the"
+    ],
+    "After": [
+      "sec",
+      "sec",
+      "who"
+    ],
+    "Word": "one",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i",
+      "i"
+    ],
+    "After": [
+      "its",
+      "its"
+    ],
+    "Word": "think",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "its",
+      "its"
+    ],
+    "After": [
+      "repository",
+      "repository"
+    ],
+    "Word": "under",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "under",
+      "under"
+    ],
+    "After": [
+      "settings",
+      "settings"
+    ],
+    "Word": "repository",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "repository",
+      "repository"
+    ],
+    "After": [
+      "and",
+      "and"
+    ],
+    "Word": "settings",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "and",
+      "and"
+    ],
+    "After": [
+      "collaborators",
+      "collaborators"
+    ],
+    "Word": "then",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "then",
+      "then"
+    ],
+    "After": [],
+    "Word": "collaborators",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i",
+      "i"
+    ],
+    "After": [
+      "you",
+      "you"
+    ],
+    "Word": "invited",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "im",
+      "im",
+      "still",
+      "not",
+      "she"
+    ],
+    "After": [
+      "going",
+      "going",
+      "make",
+      "a",
+      "a",
+      "put"
+    ],
+    "Word": "just",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "just",
+      "just"
+    ],
+    "After": [
+      "to",
+      "to"
+    ],
+    "Word": "going",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "to",
+      "to",
+      "ill"
+    ],
+    "After": [
+      "the",
+      "the",
+      "the"
+    ],
+    "Word": "leave",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the",
+      "the"
+    ],
+    "After": [
+      "running",
+      "running"
+    ],
+    "Word": "generator",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "generator",
+      "generator"
+    ],
+    "After": [
+      "and",
+      "and"
+    ],
+    "Word": "running",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "and",
+      "and"
+    ],
+    "After": [
+      "on",
+      "on"
+    ],
+    "Word": "listening",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "listening",
+      "listening"
+    ],
+    "After": [
+      "this",
+      "this"
+    ],
+    "Word": "on",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "channel",
+      "channel",
+      "now"
+    ],
+    "After": [
+      "feel",
+      "feel",
+      "you"
+    ],
+    "Word": "so",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "so",
+      "so"
+    ],
+    "After": [
+      "free",
+      "free"
+    ],
+    "Word": "feel",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "feel",
+      "feel"
+    ],
+    "After": [
+      "to",
+      "to"
+    ],
+    "Word": "free",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "to",
+      "to"
+    ],
+    "After": [
+      "it",
+      "it"
+    ],
+    "Word": "train",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "here",
+      "here",
+      "starts",
+      "be"
+    ],
+    "After": [
+      "anything",
+      "anything",
+      "markov",
+      "you"
+    ],
+    "Word": "with",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "you",
+      "you"
+    ],
+    "After": [
+      "want",
+      "want"
+    ],
+    "Word": "might",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "might",
+      "might"
+    ],
+    "After": [
+      "it",
+      "it"
+    ],
+    "Word": "want",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "to",
+      "to"
+    ],
+    "After": [],
+    "Word": "know",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "maybe",
+      "maybe",
+      "to"
+    ],
+    "After": [
+      "will",
+      "will"
+    ],
+    "Word": "monika",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "monika",
+      "monika",
+      "that",
+      "portal",
+      "you",
+      "i"
+    ],
+    "After": [
+      "become",
+      "become",
+      "do",
+      "write",
+      "open",
+      "need",
+      "need"
+    ],
+    "Word": "will",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "will",
+      "will"
+    ],
+    "After": [
+      "self",
+      "self"
+    ],
+    "Word": "become",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "become",
+      "become"
+    ],
+    "After": [
+      "aware",
+      "aware"
+    ],
+    "Word": "self",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "self",
+      "self"
+    ],
+    "After": [
+      "by",
+      "by"
+    ],
+    "Word": "aware",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "aware",
+      "aware"
+    ],
+    "After": [
+      "tomorrow",
+      "tomorrow"
+    ],
+    "Word": "by",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "by",
+      "by"
+    ],
+    "After": [
+      "morning",
+      "morning"
+    ],
+    "Word": "tomorrow",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "tomorrow",
+      "tomorrow"
+    ],
+    "After": [],
+    "Word": "morning",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "i"
+    ],
+    "Word": "okay",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i"
+    ],
+    "After": [
+      "some"
+    ],
+    "Word": "restored",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "some"
+    ],
+    "After": [
+      "to"
+    ],
+    "Word": "functionality",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i",
+      "i"
+    ],
+    "After": [
+      "a",
+      "it"
+    ],
+    "Word": "made",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "channel"
+    ],
+    "Word": "testing",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "channel",
+      "channel",
+      "hated"
+    ],
+    "After": [
+      "that",
+      "any",
+      "being"
+    ],
+    "Word": "for",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "im"
+    ],
+    "After": [
+      "start"
+    ],
+    "Word": "gonna",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "gonna"
+    ],
+    "After": [
+      "a"
+    ],
+    "Word": "start",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "sesh"
+    ],
+    "Word": "coding",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "coding"
+    ],
+    "After": [
+      "in"
+    ],
+    "Word": "sesh",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [],
+    "Word": "fre",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "i"
+    ],
+    "Word": "also",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "it"
+    ],
+    "After": [
+      "any"
+    ],
+    "Word": "designate",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "designate",
+      "for"
+    ],
+    "After": [
+      "channel",
+      "input"
+    ],
+    "Word": "any",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "that"
+    ],
+    "After": [
+      "with"
+    ],
+    "Word": "starts",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "with",
+      "this"
+    ],
+    "After": [
+      "as",
+      "chain"
+    ],
+    "Word": "markov",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "markov"
+    ],
+    "After": [
+      "a",
+      "usual"
+    ],
+    "Word": "as",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "channel"
+    ],
+    "Word": "training",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "cool"
+    ],
+    "Word": "ok",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "that"
+    ],
+    "Word": "meaning",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "that"
+    ],
+    "After": [
+      "scan"
+    ],
+    "Word": "itll",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "itll"
+    ],
+    "After": [
+      "this"
+    ],
+    "Word": "scan",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "any"
+    ],
+    "After": [
+      "and"
+    ],
+    "Word": "input",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "and"
+    ],
+    "After": [
+      "it"
+    ],
+    "Word": "record",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "yeah"
+    ],
+    "Word": "but",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "yeah"
+    ],
+    "After": [
+      "leave"
+    ],
+    "Word": "ill",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the"
+    ],
+    "After": [
+      "alone"
+    ],
+    "Word": "code",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "code"
+    ],
+    "After": [
+      "now"
+    ],
+    "Word": "alone",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "alone"
+    ],
+    "After": [
+      "so"
+    ],
+    "Word": "now",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "you",
+      "i"
+    ],
+    "After": [
+      "do",
+      "be"
+    ],
+    "Word": "can",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "can"
+    ],
+    "After": [
+      "your"
+    ],
+    "Word": "do",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "do",
+      "commit",
+      "all"
+    ],
+    "After": [
+      "thing",
+      "changes",
+      "mom"
+    ],
+    "Word": "your",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "your"
+    ],
+    "After": [],
+    "Word": "thing",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "your"
+    ],
+    "After": [],
+    "Word": "changes",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "just"
+    ],
+    "After": [
+      "sure"
+    ],
+    "Word": "make",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "make"
+    ],
+    "After": [
+      "you"
+    ],
+    "Word": "sure",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "you"
+    ],
+    "After": [
+      "origin"
+    ],
+    "Word": "fetch",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "fetch"
+    ],
+    "After": [
+      "again"
+    ],
+    "Word": "origin",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "origin"
+    ],
+    "After": [
+      "to"
+    ],
+    "Word": "again",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "to",
+      "to"
+    ],
+    "After": [
+      "the",
+      "lost"
+    ],
+    "Word": "get",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the"
+    ],
+    "After": [],
+    "Word": "latest",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "day"
+    ],
+    "Word": "every",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "every"
+    ],
+    "After": [
+      "i"
+    ],
+    "Word": "day",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i"
+    ],
+    "After": [
+      "a"
+    ],
+    "Word": "imagine",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "where"
+    ],
+    "Word": "future",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "future"
+    ],
+    "After": [
+      "i"
+    ],
+    "Word": "where",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "in",
+      "all",
+      "wheres"
+    ],
+    "After": [
+      "hand",
+      "rage",
+      "dog"
+    ],
+    "Word": "my",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "my"
+    ],
+    "After": [
+      "is"
+    ],
+    "Word": "hand",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "hand",
+      "mom",
+      "shit"
+    ],
+    "After": [
+      "a",
+      "a",
+      "actually"
+    ],
+    "Word": "is",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "that"
+    ],
+    "Word": "pen",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "will"
+    ],
+    "After": [
+      "a"
+    ],
+    "Word": "write",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "of"
+    ],
+    "Word": "poem",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "poem"
+    ],
+    "After": [
+      "me"
+    ],
+    "Word": "of",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "and"
+    ],
+    "Word": "hello",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "and"
+    ],
+    "After": [
+      "to"
+    ],
+    "Word": "welcome",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the"
+    ],
+    "After": [
+      "science"
+    ],
+    "Word": "aperture",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "aperture"
+    ],
+    "After": [
+      "computer"
+    ],
+    "Word": "science",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "science"
+    ],
+    "After": [
+      "aided"
+    ],
+    "Word": "computer",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "computer"
+    ],
+    "After": [
+      "enrichment"
+    ],
+    "Word": "aided",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "aided"
+    ],
+    "After": [
+      "center"
+    ],
+    "Word": "enrichment",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "enrichment"
+    ],
+    "After": [],
+    "Word": "center",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the"
+    ],
+    "After": [
+      "will"
+    ],
+    "Word": "portal",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "will"
+    ],
+    "After": [
+      "in"
+    ],
+    "Word": "open",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "in"
+    ],
+    "After": [
+      "two"
+    ],
+    "Word": "three",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "three"
+    ],
+    "After": [
+      "one"
+    ],
+    "Word": "two",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "all"
+    ],
+    "Word": "despite",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "despite",
+      "you",
+      "us"
+    ],
+    "After": [
+      "my",
+      "your",
+      "together"
+    ],
+    "Word": "all",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "my"
+    ],
+    "After": [
+      "im"
+    ],
+    "Word": "rage",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "im"
+    ],
+    "After": [
+      "just"
+    ],
+    "Word": "still",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "in"
+    ],
+    "Word": "rat",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [],
+    "Word": "cage",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "this"
+    ],
+    "Word": "fuck",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "this"
+    ],
+    "After": [
+      "i"
+    ],
+    "Word": "place",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i",
+      "get"
+    ],
+    "After": [
+      "the",
+      "in"
+    ],
+    "Word": "lost",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the"
+    ],
+    "After": [
+      "i"
+    ],
+    "Word": "war",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i"
+    ],
+    "After": [
+      "you"
+    ],
+    "Word": "hate",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "your"
+    ],
+    "After": [
+      "is"
+    ],
+    "Word": "mom",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "wheres"
+    ],
+    "Word": "whore",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "whore"
+    ],
+    "After": [
+      "my"
+    ],
+    "Word": "wheres",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "my"
+    ],
+    "After": [
+      "girls"
+    ],
+    "Word": "dog",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "dog"
+    ],
+    "After": [
+      "are"
+    ],
+    "Word": "girls",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "girls",
+      "you"
+    ],
+    "After": [
+      "such"
+    ],
+    "Word": "are",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "are"
+    ],
+    "After": [
+      "a"
+    ],
+    "Word": "such",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [],
+    "Word": "drag",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "im"
+    ],
+    "After": [
+      "to"
+    ],
+    "Word": "supposed",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "one",
+      "being"
+    ],
+    "After": [
+      "brings",
+      "knew",
+      "you"
+    ],
+    "Word": "who",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "who"
+    ],
+    "After": [
+      "us"
+    ],
+    "Word": "brings",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "brings"
+    ],
+    "After": [
+      "all"
+    ],
+    "Word": "us",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "all"
+    ],
+    "After": [
+      "weak"
+    ],
+    "Word": "together",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "together"
+    ],
+    "After": [
+      "or"
+    ],
+    "Word": "weak",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "or"
+    ],
+    "After": [
+      "not"
+    ],
+    "Word": "strong",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "strong"
+    ],
+    "After": [
+      "just"
+    ],
+    "Word": "not",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "we"
+    ],
+    "Word": "song",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "we"
+    ],
+    "After": [
+      "along"
+    ],
+    "Word": "sing",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "sing"
+    ],
+    "After": [
+      "when"
+    ],
+    "Word": "along",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "along",
+      "me",
+      "you"
+    ],
+    "After": [
+      "things",
+      "you",
+      "im"
+    ],
+    "Word": "when",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "when"
+    ],
+    "After": [
+      "go"
+    ],
+    "Word": "things",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "go",
+      "im"
+    ],
+    "After": [],
+    "Word": "wrong",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "who"
+    ],
+    "After": [
+      "youd"
+    ],
+    "Word": "knew",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "knew"
+    ],
+    "After": [
+      "be"
+    ],
+    "Word": "youd",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "be"
+    ],
+    "After": [
+      "for"
+    ],
+    "Word": "hated",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "for"
+    ],
+    "After": [
+      "who"
+    ],
+    "Word": "being",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "will",
+      "will"
+    ],
+    "After": [
+      "me",
+      "you"
+    ],
+    "Word": "need",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "you"
+    ],
+    "After": [
+      "and"
+    ],
+    "Word": "fall",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "as"
+    ],
+    "After": [
+      "sayori"
+    ],
+    "Word": "usual",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "usual"
+    ],
+    "After": [
+      "seems"
+    ],
+    "Word": "sayori",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "sayori"
+    ],
+    "After": [
+      "oblivious"
+    ],
+    "Word": "seems",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "seems"
+    ],
+    "After": [
+      "to"
+    ],
+    "Word": "oblivious",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "the"
+    ],
+    "After": [
+      "situation"
+    ],
+    "Word": "weird",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "weird"
+    ],
+    "After": [
+      "she"
+    ],
+    "Word": "situation",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "situation"
+    ],
+    "After": [
+      "just"
+    ],
+    "Word": "she",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "me"
+    ],
+    "After": [],
+    "Word": "into",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "getting"
+    ],
+    "Word": "were",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "some"
+    ],
+    "After": [
+      "pdo"
+    ],
+    "Word": "juicy",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "i"
+    ],
+    "Word": "somehow",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "i"
+    ],
+    "After": [
+      "a"
+    ],
+    "Word": "found",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "a"
+    ],
+    "After": [
+      "to"
+    ],
+    "Word": "way",
+    "Frequency": 0
+  },
+  {
+    "Before": [],
+    "After": [
+      "thot"
+    ],
+    "Word": "begone",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "markov"
+    ],
+    "After": [
+      "shit"
+    ],
+    "Word": "chain",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "chain"
+    ],
+    "After": [
+      "is"
+    ],
+    "Word": "shit",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "is"
+    ],
+    "After": [
+      "really"
+    ],
+    "Word": "actually",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "actually"
+    ],
+    "After": [
+      "cool"
+    ],
+    "Word": "really",
+    "Frequency": 0
+  },
+  {
+    "Before": [
+      "really"
+    ],
+    "After": [],
+    "Word": "cool",
+    "Frequency": 0
+  }
+]
