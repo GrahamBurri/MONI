@@ -1,0 +1,7 @@
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\bin\Debug\MarkovController.dll
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\bin\Debug\MarkovController.pdb
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\bin\Debug\Newtonsoft.Json.dll
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\bin\Debug\Newtonsoft.Json.xml
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\obj\Debug\MarkovController.csprojResolveAssemblyReference.cache
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\obj\Debug\MarkovController.dll
+C:\Users\th1nk\Dropbox\RiderProjects\BestGirl\Markov\obj\Debug\MarkovController.pdb
