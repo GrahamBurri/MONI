@@ -16,6 +16,11 @@ namespace Monika
     {
         static void Main(string[] args)
         {
+            //using (var adminProcess = new System.Diagnostics.Process())
+            //{
+            //    adminProcess.StartInfo.FileName = @"..\..\..\ConsoleApp2\bin\Debug\ConsoleApp2.exe";
+            //    admin.Start();
+            //}
             var mkbot = new MonikaBot();
             mkbot.MainAsync().GetAwaiter().GetResult();
         }

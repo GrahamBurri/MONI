@@ -143,6 +143,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmotionController\EmotionController.csproj">
+      <Project>{ebf3e855-8a55-49dc-8960-f1ba6deab947}</Project>
+      <Name>EmotionController</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Markov\MarkovController.csproj">
       <Project>{d9774d25-60b2-42d5-b877-d93fef82b326}</Project>
       <Name>MarkovController</Name>

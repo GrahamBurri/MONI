@@ -4,3 +4,10 @@ C:\Users\th1nk\Dropbox\GitHub\MONI\Monika\bin\Debug\Monika.pdb
 C:\Users\th1nk\Dropbox\GitHub\MONI\Monika\obj\Debug\Monika.csprojResolveAssemblyReference.cache
 C:\Users\th1nk\Dropbox\GitHub\MONI\Monika\obj\Debug\Monika.exe
 C:\Users\th1nk\Dropbox\GitHub\MONI\Monika\obj\Debug\Monika.pdb
+C:\Users\ghbur\Source\Repos\MONI\Monika\bin\Debug\Monika.exe.config
+C:\Users\ghbur\Source\Repos\MONI\Monika\bin\Debug\Monika.exe
+C:\Users\ghbur\Source\Repos\MONI\Monika\bin\Debug\Monika.pdb
+C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.csprojResolveAssemblyReference.cache
+C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.csproj.CoreCompileInputs.cache
+C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.exe
+C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.pdb
