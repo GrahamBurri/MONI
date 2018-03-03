@@ -7,28 +7,36 @@ using Discord.WebSocket;
 using MarkovGenerator;
 using Newtonsoft.Json;
 using BestGirl.Responses;
+using Monika.Emotions;
+using Monika.AdminController;
 
 namespace Monika
 {
-    public static class InterConsole // for passing the reference to the bot between both consoles
-    {
-        public static MonikaBot monika;
-        public static MonikaBot getBot()
-        {
-            return monika;
-        }
-        public static void setBot(MonikaBot mb)
-        {
-            monika = mb;
-        }
-    }
     class Program
     {
         static void Main(string[] args)
         {
             var mkbot = new MonikaBot();
-            InterConsole.setBot(mkbot);
-            mkbot.MainAsync().GetAwaiter().GetResult();
+            mkbot.MainAsync().GetAwaiter().GetResult(); // Just let it run in background
+
+            while(!mkbot.IsReady)
+            {
+                // Wait for bot to be ready
+            }
+
+            AdminConsole admin = new AdminConsole();
+            admin.Client = mkbot.Client;
+            admin.Generator = mkbot.Generator;
+            admin.Manager = mkbot.Manager;
+
+            Console.Write("> ");
+            var cmd = Console.ReadLine();
+            while (cmd != "exit")
+            {
+                Console.WriteLine(admin.ParseCommand(cmd));
+                Console.Write("> ");
+                cmd = Console.ReadLine();
+            }
         }
     }
 
@@ -36,8 +44,12 @@ namespace Monika
     {
         const string TOKFILE = "tokens.pdo";
         Random randy = new Random();
-        MarkovNextGen generator = new MarkovNextGen();
-        DiscordSocketClient client = new DiscordSocketClient();
+
+        public MarkovNextGen Generator { get; private set; } = new MarkovNextGen();
+        public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
+        public EmotionManager Manager { get; private set; }
+
+        public Boolean IsReady { get; private set; } = false;
 
         TokenSet Tokens
         {
@@ -56,12 +68,12 @@ namespace Monika
                 }
             }
         }
-        public static Boolean TaggedIn(SocketMessage msg)
+        public static Boolean TaggedIn(SocketMessage msg, String username)
         {
             var _tagged = false;
             foreach (var usr in msg.MentionedUsers)
             {
-                if (usr.Username == "Monika" || usr.Username == "Monika Dev")
+                if (usr.Username == username)
                 {
                     _tagged = true;
                 }
@@ -83,9 +95,9 @@ namespace Monika
             var author = msg.Author.Username;
             var text = msg.Content;
 
-            if (author != "Monika" && author != "Monika Dev") // Don't process our own messages
+            if (author != Client.CurrentUser.Username) // Don't process our own messages
             {
-                if (TaggedIn(msg))
+                if (TaggedIn(msg, Client.CurrentUser.Username))
                 {
                     if (text.Contains(" say "))
                     {
@@ -97,8 +109,17 @@ namespace Monika
                         var ss = text.Substring(text.IndexOf("markov") + 7);
                         if (Int32.TryParse(ss, out int i))
                         {
-                            var response = generator.Generate(i);
+                            var response = Generator.Generate(i);
                             await msg.Channel.SendMessageAsync(response);
+                        }
+                    }
+                    else if (text.Contains(" nick "))
+                    {
+                        var ss = text.Substring(text.IndexOf("nick") + 5);
+                        // We'll need a check to make sure no one else was tagged
+                        foreach (var usr in msg.MentionedUsers)
+                        {
+                            await (usr as IGuildUser).ModifyAsync(x => x.Nickname = ss);
                         }
                     }
                     else
@@ -116,14 +137,15 @@ namespace Monika
                 }
                 else if (msg.Channel.Name.StartsWith("markov-")) 
                 {
-                    generator.AddToChain(text); // Record the message
+                    Generator.AddToChain(text); // Record the message
                 }
             }
         }
 
+        // Deprecated?
         public async Task ChangeAvatar(string filename)
         {
-            var me = client.CurrentUser;
+            var me = Client.CurrentUser;
             using (FileStream fs = File.OpenRead(filename))
             {
                 var avatar = new Image(fs);
@@ -136,23 +158,24 @@ namespace Monika
 
         public async Task Ready()
         {
+            Manager = new EmotionManager(Client);
+            IsReady = true;
             // await ChangeAvatar("someavatar.jpg");
         }
 
         public async Task MainAsync()
         {
 
-            client.Log += Log;
-            client.MessageReceived += MessageReceived;
-            client.Ready += Ready;
+            Client.Log += Log;
+            Client.MessageReceived += MessageReceived;
+            Client.Ready += Ready;
 
-            var TOKEN = Tokens.Release;
+            var TOKEN = Tokens.Development;
 
-            await client.LoginAsync(TokenType.Bot, TOKEN);
-            await client.StartAsync();
+            await Client.LoginAsync(TokenType.Bot, TOKEN);
+            await Client.StartAsync();
 
-            // Keep it running
-            await Task.Delay(-1);
+            // Removed delay
         }
     }
 

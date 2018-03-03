@@ -11,42 +11,41 @@ namespace EmotionController
 {
     public class EmotionManager
     {
-        private static string path = Directory.GetCurrentDirectory();
-        private string currentEmotion = (path + "\\default.jpg");
-        private Discord.WebSocket.DiscordSocketClient client;
+        public String Emotion { get; set; }
+        public Discord.WebSocket.DiscordSocketClient Client { private get; set; }
 
         public EmotionManager(DiscordSocketClient c)
         {
-            client = c;
+            Client = c;
         }
-        public String getState()
+        public static String ProcessMessage(String inputMessage) // add some emotion to a message
         {
-            return currentEmotion;
-        }
-        public Discord.Image getStateImage()
-        {
-            Discord.Image image = new Discord.Image(File.OpenWrite(currentEmotion));
-            return image;
-        }
-        private String setStateImage(String path)
-        {
-            return path;
-        }
-        public void setState(String emotion)
-        {
-            currentEmotion = emotion;
-        }
-        public String processMessage(String inputMessage) // add some emotion to a message
-        {
+            // Should return an emotion filename
             return inputMessage;
         }
-        public async Task updateAvatar()
+        public async Task UpdateAvatar()
         {
-            
-            var user = client.CurrentUser;
-            await user.ModifyAsync(x => {
-                x.Avatar = getStateImage();
-            });
+            var user = Client.CurrentUser;
+            if (File.Exists(Emotion))
+            {
+                await user.ModifyAsync(x => {
+                    x.Avatar = Emotion.ToStateImage();
+                });
+            }
+        }
+    }
+
+    public static class Extensions
+    {
+        // Need to check if file exists before call
+        public static Discord.Image ToStateImage(this string s)
+        {
+            Discord.Image img;
+            using (var fs = File.OpenRead(s))
+            {
+                img = new Discord.Image(fs);
+            }
+            return img;
         }
     }
 }
