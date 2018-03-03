@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
@@ -12,16 +10,24 @@ using BestGirl.Responses;
 
 namespace Monika
 {
+    public static class InterConsole // for passing the reference to the bot between both consoles
+    {
+        public static MonikaBot monika;
+        public static MonikaBot getBot()
+        {
+            return monika;
+        }
+        public static void setBot(MonikaBot mb)
+        {
+            monika = mb;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            //using (var adminProcess = new System.Diagnostics.Process())
-            //{
-            //    adminProcess.StartInfo.FileName = @"..\..\..\ConsoleApp2\bin\Debug\ConsoleApp2.exe";
-            //    admin.Start();
-            //}
             var mkbot = new MonikaBot();
+            InterConsole.setBot(mkbot);
             mkbot.MainAsync().GetAwaiter().GetResult();
         }
     }
@@ -50,7 +56,6 @@ namespace Monika
                 }
             }
         }
-
         public static Boolean TaggedIn(SocketMessage msg)
         {
             var _tagged = false;
@@ -69,7 +74,10 @@ namespace Monika
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
-
+        //public async Task SendMessage(String message)
+        //{
+        // TODO add asynchronous message sending
+        //}
         public async Task MessageReceived(SocketMessage msg)
         {
             var author = msg.Author.Username;
