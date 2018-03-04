@@ -35,6 +35,8 @@ namespace MarkovGenerator
             }
             else
             {
+                Console.WriteLine("_Warn: No PDO detected");
+                Console.WriteLine("Resol: Returning blank Dictionary<string, LinkNextGen>");
                 return new Dictionary<string, LinkNextGen>();
             }
         }
@@ -128,5 +130,63 @@ namespace MarkovGenerator
 
         // TODO add generator based on starting word input & number of sentences (with natural length through detecting punctuation)
 
+    }
+
+    public static class MarkovUtility
+    {
+        public static Dictionary<string, LinkNextGen> Merge(Dictionary<string, LinkNextGen> from, Dictionary<string, LinkNextGen> target)
+        {
+            foreach (KeyValuePair<string, LinkNextGen> kvp in from)
+            {
+                if (target.ContainsKey(kvp.Key))    // Entry exists in target, merge
+                {
+                    target[kvp.Key].AddAfter(kvp.Value.After);
+                }
+                else                                // Entry doesn't exist, create one
+                {
+                    var _link = new LinkNextGen(kvp.Value.After);
+                    target.Add(kvp.Key, _link);
+                }
+            }
+            return new Dictionary<string, LinkNextGen>(target);
+        }
+
+
+        public static Dictionary<string, LinkNextGen> MergeFrom(string from, string target) // Merges two pdo files into a new chain
+        {
+            if (File.Exists(from) && File.Exists(target))
+            {
+                var jsonfrom = File.ReadAllText(from);
+                var jsontarget = File.ReadAllText(target);
+
+                var _from = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsonfrom);
+                var _target = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsontarget);
+
+                return Merge(_from, _target);
+            }
+            else
+            {
+                Console.WriteLine("Error: One or more of the target files does not exist");
+                Console.WriteLine("Resol: Returning blank Dictionary<string, LinkNextGen>");
+                Console.WriteLine(Environment.NewLine);
+                return new Dictionary<string, LinkNextGen>();
+            }
+        }
+
+        public static void MergeTo(string from, string target) // Merges one pdo file into another
+        {
+            if (File.Exists(from) && File.Exists(target))
+            {
+                var merged = MergeFrom(from, target);
+                var jsontarget = JsonConvert.SerializeObject(merged, Formatting.Indented);
+                File.WriteAllText(target, jsontarget);
+            }
+            else
+            {
+                Console.WriteLine("Error: One or more of the target files does not exist.");
+                Console.WriteLine("Resol: Ignoring invalid MergeTo request");
+                Console.WriteLine(Environment.NewLine);
+            }
+        }
     }
 }

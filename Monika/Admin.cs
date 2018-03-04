@@ -8,6 +8,7 @@ using Discord;
 using Discord.WebSocket;
 using Monika.Emotions;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Monika.AdminController
 {
@@ -17,18 +18,20 @@ namespace Monika.AdminController
         public MarkovNextGen Generator { get; set; }
         public EmotionManager Manager { get; set; }
 
-        public String ParseCommand(string cmd)
+        public void ParseCommand(string cmd)
         {
             if (cmd.StartsWith("markov"))
             {
                 var rest = cmd.Substring(7);
                 if (Int32.TryParse(rest, out int length))
                 {
-                    return Generator.Generate(length);
+                    Console.WriteLine(Generator.Generate(length));
                 }
                 else
                 {
-                    return "Usage is as follows:  `markov $length` where $length is an integer";
+                    Console.WriteLine("Error: Invalid length");
+                    Console.WriteLine("Resol: Ignoring invalid markov request");
+                    Console.WriteLine(Environment.NewLine);
                 }
             }
             else if (cmd.StartsWith("avatar"))
@@ -38,25 +41,67 @@ namespace Monika.AdminController
                 {
                     Manager.Emotion = rest;
                     Manager.UpdateAvatar().GetAwaiter().GetResult();
-                    return "Avatar Updated:  " + rest;
+                    Console.WriteLine("Avatar Updated: " + rest);
                 }
                 else
                 {
-                    return "File does not exist:  " + rest;
+                    Console.WriteLine("Error: Avatar file does not exist");
+                    Console.WriteLine("Resol: Ignoring invalid avatar update request");
+                    Console.WriteLine(Environment.NewLine);
                 }
                 
             }
+            else if (cmd.StartsWith("merge"))
+            {
+                var rest = cmd.Substring(6);
+                var targets = rest.Split(' ');
+                if (targets.Length == 2)        // Merge two files
+                {
+                    // File existence check is implemented in Merge methods
+                    MarkovUtility.MergeTo(targets[0], targets[1]);
+                }
+                else if (targets.Length == 3)   // Merge two files into third
+                {
+                    // File existence check implemented in Merge methods
+                    // Additional target check implemented here
+                    if (!File.Exists(targets[2]))
+                    {
+                        var merged = MarkovUtility.MergeFrom(targets[0], targets[1]);
+                        var jsonmerged = JsonConvert.SerializeObject(merged, Formatting.Indented);
+                        File.WriteAllText(targets[2], jsonmerged);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Target file already exists");
+                        Console.WriteLine("Resol: Ignoring merge request");
+                        Console.WriteLine("_Note: If this is intentional, merge twice");
+                        Console.WriteLine(Environment.NewLine);
+                    }
+                }
+                else // Shouldn't happen
+                {
+                    Console.WriteLine("Error: Invalid merge request");
+                    Console.WriteLine("Resol: Ignoring invalid merge request");
+                    Console.WriteLine(Environment.NewLine);
+                }
+            }
             else if (cmd.StartsWith("cleanse"))
             {
-                return "Implement this later";
+                Console.WriteLine("_Warn: CLEANSE Request not yet implemented");
+                Console.WriteLine("Resol: Ignoring invalid request");
+                Console.WriteLine(Environment.NewLine);
             }
             else if (cmd.StartsWith("load"))
             {
-                return "Implement this later";
+                Console.WriteLine("_Warn: LOAD Request not yet implemented");
+                Console.WriteLine("Resol: Ignoring invalid request");
+                Console.WriteLine(Environment.NewLine);
             }
             else
             {
-                return "Invalid Command " + cmd;
+                Console.WriteLine("Error: Unknown request");
+                Console.WriteLine("Resol: Ignoring unknown request");
+                Console.WriteLine(Environment.NewLine);
             }
         }
     }

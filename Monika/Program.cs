@@ -33,7 +33,7 @@ namespace Monika
             var cmd = Console.ReadLine();
             while (cmd != "exit")
             {
-                Console.WriteLine(admin.ParseCommand(cmd));
+                admin.ParseCommand(cmd);
                 Console.Write("> ");
                 cmd = Console.ReadLine();
             }
