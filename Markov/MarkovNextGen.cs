@@ -90,6 +90,7 @@ namespace MarkovGenerator
         public void AddToChain(Dictionary<string, LinkNextGen> from)    // Merge with current chain
         {
             Chain = MarkovUtility.Merge(from, Chain);
+            WriteChain();
         }
 
         public void PrintChain()
@@ -100,14 +101,15 @@ namespace MarkovGenerator
                 Console.WriteLine("\t" + kvp.Value);
             }
         }
-
+        
+        // Generate with fixed length and predefined starting word
         public String Generate(int length, string start)
         {
             var keys = Chain.Keys.ToList();
             var _word = start;
             string genChain = _word;
             // Start at 1 since genChain already contains _word
-            for (int i = 1; i < length; i++)    // Don't actuall need i
+            for (int i = 1; i < length; i++)    // Don't actually need i
             {
                 if (Chain.ContainsKey(_word))   // Entry exists for _word
                 {
@@ -126,12 +128,39 @@ namespace MarkovGenerator
             return genChain;
         }
 
+        // Generate with fixed length and random starting word
         public String Generate(int length) // Generate based on # of words and random starting point
         {
-            Random randy = new Random();
             var keys = Chain.Keys.ToList();
             var _word = keys[randy.Next(0, keys.Count)];
             return Generate(length, _word);
+        }
+
+        // Generate with automatic length and predefined starting word
+        public String Generate(string start)
+        {
+            var keys = Chain.Keys.ToList();
+            var _word = start;
+            string genChain = _word;
+            var i = 0;  // Break at 50 so we don't get infinite loops
+            while (Chain.ContainsKey(_word) && i < 50)
+            {
+                if (Chain[_word].After.Count > 0)   // Otherwise empty entry
+                {
+                    _word = Chain[_word].RandomAfter();
+                    genChain += " " + _word;
+                }
+                i++;
+            }
+            return genChain;
+        }
+
+        // Generate with automatic length and random starting word
+        public String Generate()
+        {
+            var keys = Chain.Keys.ToList();
+            var _word = keys[randy.Next(0, keys.Count)];
+            return Generate(_word);
         }
 
         // TODO add generator based on starting word input & number of sentences (with natural length through detecting punctuation)
@@ -195,6 +224,47 @@ namespace MarkovGenerator
                 Console.WriteLine("Resol: Ignoring invalid MergeTo request");
                 Console.WriteLine(Environment.NewLine);
             }
+        }
+
+        // Static add-to-chain to avoid rapidly serializing/deserializing during training
+        public static Dictionary<string, LinkNextGen> LinkToChain(Dictionary<string, LinkNextGen> chain, string word, IEnumerable<string> link)
+        {
+            var _chain = new Dictionary<string, LinkNextGen>(chain);
+            if (!String.IsNullOrWhiteSpace(word))
+            {
+                if (_chain.ContainsKey(word))
+                {
+                    _chain[word].AddAfter(link);
+                }
+                else
+                {
+                    var lnk = new LinkNextGen(link);
+                    _chain.Add(word, lnk);
+                }
+            }
+            return _chain;
+        }
+
+        public static Dictionary<string, LinkNextGen> LinkToChain(string s)
+        {
+            // Consistent casing and treat linebreaks as spaces
+            var lower = s.ToLower().Replace(Environment.NewLine, " ").Trim(' ');
+            // Remove all characters other than letters and spaces
+            var cleancopy = Regex.Replace(lower, "[^a-z ]+", "", RegexOptions.Compiled);
+            var words = cleancopy.Split(' ');
+            var chain = new Dictionary<string, LinkNextGen>();
+            if (words.Length >= 2)  // Don't record single words  
+            {
+                for (int i = 0; i < words.Length - 1; i++)
+                {
+                    var key = words[i];             // The word
+                    var value = words[i + 1];       // Next word
+                    var after = new List<string>();
+                    after.Add(value);
+                    chain = LinkToChain(chain, key, after);         // Add link to chain
+                }
+            }
+            return chain;
         }
     }
 }

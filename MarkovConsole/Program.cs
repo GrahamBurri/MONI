@@ -23,9 +23,12 @@ namespace MarkovConsole
                     var rest = cmd.Substring(6);
                     if (File.Exists(rest))
                     {
+                        var chain = new Dictionary<string, LinkNextGen>();
                         foreach (var line in File.ReadAllLines(rest))
                         {
-                            markov.AddToChain(line);
+                            // This way it only gets serialized once
+                            chain = MarkovUtility.LinkToChain(line);
+                            markov.AddToChain(chain);
                         }
                     }
                     else
@@ -52,16 +55,38 @@ namespace MarkovConsole
                 }
                 else if (cmd.StartsWith("gen"))
                 {
-                    var rest = cmd.Substring(4);
-                    if (Int32.TryParse(rest, out int length))
+                    if (cmd == "gen")                               // Automatic length and random word
                     {
-                        Console.WriteLine(markov.Generate(length));
+                        Console.WriteLine(markov.Generate());
                     }
                     else
                     {
-                        Console.WriteLine("Error: Provided length was not an integer");
-                        Console.WriteLine("Resol: Ignoring invalid gen request");
-                        Console.WriteLine(Environment.NewLine);
+                        var rest = cmd.Substring(4);
+                        if (Int32.TryParse(rest, out int length))   // Length and random word
+                        {
+                            Console.WriteLine(markov.Generate(length));
+                        }
+                        else
+                        {
+                            if (!rest.Contains(" "))                // Automatic length and specific word
+                            {
+                                Console.WriteLine(markov.Generate(rest));
+                            }
+                            else                                    // Automatic length and random word
+                            {
+                                var arguments = rest.Split(' ');
+                                if (Int32.TryParse(arguments[0], out int length2))
+                                {
+                                    Console.WriteLine(markov.Generate(length2, arguments[1]));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Error: Specified length was not an integer");
+                                    Console.WriteLine("Resol: Ignoring invalid gen request");
+                                    Console.WriteLine(Environment.NewLine);
+                                }
+                            }
+                        }
                     }
                 }
                 else if (cmd.StartsWith("merge"))
@@ -94,8 +119,7 @@ namespace MarkovConsole
                 }
                 else if (cmd.StartsWith("load"))
                 {
-                    // This is temporary unless you call a method that writes to chain
-                    // For persistence just merge your file with markov.pdo
+                    // Merges and serialzies PDO file into current chain
                     var rest = cmd.Substring(5);
                     if (File.Exists(rest))
                     {

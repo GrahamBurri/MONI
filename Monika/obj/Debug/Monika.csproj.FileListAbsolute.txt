@@ -11,3 +11,4 @@ C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.csprojResolveAssemblyRe
 C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.csproj.CoreCompileInputs.cache
 C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.exe
 C:\Users\ghbur\Source\Repos\MONI\Monika\obj\Debug\Monika.pdb
+C:\Users\th1nk\Dropbox\GitHub\MONI\Monika\obj\Debug\Monika.csproj.CoreCompileInputs.cache
