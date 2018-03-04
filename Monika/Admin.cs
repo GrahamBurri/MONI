@@ -78,7 +78,7 @@ namespace Monika.AdminController
                         Console.WriteLine(Environment.NewLine);
                     }
                 }
-                else // Shouldn't happen
+                else // You entered a weird number of filenames
                 {
                     Console.WriteLine("Error: Invalid merge request");
                     Console.WriteLine("Resol: Ignoring invalid merge request");
@@ -87,15 +87,28 @@ namespace Monika.AdminController
             }
             else if (cmd.StartsWith("cleanse"))
             {
+                // Honestly I'm not sure what you want to do with cleanse
                 Console.WriteLine("_Warn: CLEANSE Request not yet implemented");
                 Console.WriteLine("Resol: Ignoring invalid request");
                 Console.WriteLine(Environment.NewLine);
             }
             else if (cmd.StartsWith("load"))
             {
-                Console.WriteLine("_Warn: LOAD Request not yet implemented");
-                Console.WriteLine("Resol: Ignoring invalid request");
-                Console.WriteLine(Environment.NewLine);
+                // This is temporary unless you call a method that writes to chain
+                // For persistence just merge your file with markov.pdo
+                var rest = cmd.Substring(5);
+                if (File.Exists(rest))
+                {
+                    var jsonfrom = File.ReadAllText(rest);
+                    var from = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsonfrom);
+                    Generator.AddToChain(from);
+                }
+                else
+                {
+                    Console.WriteLine("Error: Target file does not exist");
+                    Console.WriteLine("Resol: Ignoring invalid load request");
+                    Console.WriteLine(Environment.NewLine);
+                }
             }
             else
             {

@@ -37,6 +37,7 @@ namespace MarkovGenerator
             {
                 Console.WriteLine("_Warn: No PDO detected");
                 Console.WriteLine("Resol: Returning blank Dictionary<string, LinkNextGen>");
+                Console.WriteLine(Environment.NewLine);
                 return new Dictionary<string, LinkNextGen>();
             }
         }
@@ -84,6 +85,11 @@ namespace MarkovGenerator
                     AddToChain(key, after);         // Add link to chain
                 }
             }
+        }
+
+        public void AddToChain(Dictionary<string, LinkNextGen> from)    // Merge with current chain
+        {
+            Chain = MarkovUtility.Merge(from, Chain);
         }
 
         public void PrintChain()
@@ -134,6 +140,7 @@ namespace MarkovGenerator
 
     public static class MarkovUtility
     {
+        // Non-persistent
         public static Dictionary<string, LinkNextGen> Merge(Dictionary<string, LinkNextGen> from, Dictionary<string, LinkNextGen> target)
         {
             foreach (KeyValuePair<string, LinkNextGen> kvp in from)
@@ -151,7 +158,7 @@ namespace MarkovGenerator
             return new Dictionary<string, LinkNextGen>(target);
         }
 
-
+        // Non-persistent
         public static Dictionary<string, LinkNextGen> MergeFrom(string from, string target) // Merges two pdo files into a new chain
         {
             if (File.Exists(from) && File.Exists(target))
@@ -173,6 +180,7 @@ namespace MarkovGenerator
             }
         }
 
+        // Persistent merge
         public static void MergeTo(string from, string target) // Merges one pdo file into another
         {
             if (File.Exists(from) && File.Exists(target))

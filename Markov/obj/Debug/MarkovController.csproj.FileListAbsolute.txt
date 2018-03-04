@@ -11,7 +11,6 @@ C:\Users\th1nk\Dropbox\GitHub\MONI\Markov\bin\Debug\Newtonsoft.Json.dll
 C:\Users\th1nk\Dropbox\GitHub\MONI\Markov\bin\Debug\Newtonsoft.Json.xml
 C:\Users\th1nk\Dropbox\GitHub\MONI\Markov\obj\Debug\MarkovController.dll
 C:\Users\th1nk\Dropbox\GitHub\MONI\Markov\obj\Debug\MarkovController.pdb
-C:\Users\th1nk\Dropbox\GitHub\MONI\Markov\obj\Debug\MarkovController.csprojResolveAssemblyReference.cache
 C:\Users\ghbur\Source\Repos\MONI\Markov\bin\Debug\MarkovController.dll
 C:\Users\ghbur\Source\Repos\MONI\Markov\bin\Debug\MarkovController.pdb
 C:\Users\ghbur\Source\Repos\MONI\Markov\bin\Debug\Newtonsoft.Json.dll
