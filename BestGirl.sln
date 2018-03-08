@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monika", "Monika\Monika.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkovConsole", "MarkovConsole\MarkovConsole.csproj", "{EDF61BE8-DF99-4859-950B-C2E283447813}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MarkovNextGen", "MarkovNextGen\MarkovNextGen.fsproj", "{6C2515A6-FBC4-4DF5-9E3A-486D317A47DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EDF61BE8-DF99-4859-950B-C2E283447813}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF61BE8-DF99-4859-950B-C2E283447813}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDF61BE8-DF99-4859-950B-C2E283447813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2515A6-FBC4-4DF5-9E3A-486D317A47DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2515A6-FBC4-4DF5-9E3A-486D317A47DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2515A6-FBC4-4DF5-9E3A-486D317A47DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2515A6-FBC4-4DF5-9E3A-486D317A47DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

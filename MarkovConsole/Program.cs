@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MarkovGenerator;
+using MarkovNextGen;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -13,7 +13,8 @@ namespace MarkovConsole
     {
         static void Main(string[] args)
         {
-            var markov = new MarkovNextGen();
+            var markov = new Markov();
+            //var markov = new MarkovNextGen();
             Console.Write("markov> ");
             var cmd = Console.ReadLine();
             while (cmd != "exit")
@@ -23,11 +24,12 @@ namespace MarkovConsole
                     var rest = cmd.Substring(6);
                     if (File.Exists(rest))
                     {
-                        var chain = new Dictionary<string, LinkNextGen>();
+                        var chain = new Dictionary<string, MarkovNextGen.Link>();
+                        // var chain = new Dictionary<string, LinkNextGen>();
                         foreach (var line in File.ReadAllLines(rest))
                         {
                             // This way it only gets serialized once
-                            chain = MarkovUtility.LinkToChain(line);
+                            chain = MarkovUtilities.Train(line);
                             markov.AddToChain(chain);
                         }
                     }
@@ -43,13 +45,16 @@ namespace MarkovConsole
                     var rest = cmd.Substring(4);
                     if (File.Exists(rest))
                     {
-                        markov = new MarkovNextGen(rest);
+                        markov = new Markov(rest);
+                        //markov = new MarkovNextGen(rest);
                     }
                     else
                     {
-                        markov = new MarkovNextGen(rest);
+                        File.WriteAllText(rest, "{}");
+                        markov = new Markov(rest);
+                        // markov = new MarkovNextGen(rest);
                         Console.WriteLine("_Warn: Target file does not exist");
-                        Console.WriteLine("Resol: Continuing with set request");
+                        Console.WriteLine("Resol: Creating target PDO");
                         Console.WriteLine(Environment.NewLine);
                     }
                 }
@@ -96,7 +101,8 @@ namespace MarkovConsole
                     if (targets.Length == 2)        // Merge two files
                     {
                         // File existence check is implemented in Merge methods
-                        MarkovUtility.MergeTo(targets[0], targets[1]);
+                        MarkovUtilities.MergeTo(targets[0], targets[1]);
+                        //MarkovUtility.MergeTo(targets[0], targets[1]);
                     }
                     else if (targets.Length == 3)   // Merge two files into third
                     {
@@ -104,7 +110,8 @@ namespace MarkovConsole
                         // Additional target check implemented here
                         if (!File.Exists(targets[2]))
                         {
-                            var merged = MarkovUtility.MergeFrom(targets[0], targets[1]);
+                            var merged = MarkovUtilities.MergeFrom(targets[0], targets[1]);
+                            //var merged = MarkovUtility.MergeFrom(targets[0], targets[1]);
                             var jsonmerged = JsonConvert.SerializeObject(merged, Formatting.Indented);
                             File.WriteAllText(targets[2], jsonmerged);
                         }
@@ -124,7 +131,8 @@ namespace MarkovConsole
                     if (File.Exists(rest))
                     {
                         var jsonfrom = File.ReadAllText(rest);
-                        var from = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsonfrom);
+                        var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
+                        //var from = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsonfrom);
                         markov.AddToChain(from);
                     }
                     else

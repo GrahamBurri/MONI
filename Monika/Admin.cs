@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MarkovGenerator;
+using MarkovNextGen;
 using Discord;
 using Discord.WebSocket;
 using Monika.Emotions;
@@ -15,7 +15,7 @@ namespace Monika.AdminController
     public class AdminConsole
     {
         public DiscordSocketClient Client { get; set; }
-        public MarkovNextGen Generator { get; set; }
+        public Markov Generator { get; set; }
         public EmotionManager Manager { get; set; }
 
         public void ParseCommand(string cmd)
@@ -58,7 +58,7 @@ namespace Monika.AdminController
                 if (targets.Length == 2)        // Merge two files
                 {
                     // File existence check is implemented in Merge methods
-                    MarkovUtility.MergeTo(targets[0], targets[1]);
+                    MarkovUtilities.MergeTo(targets[0], targets[1]);
                 }
                 else if (targets.Length == 3)   // Merge two files into third
                 {
@@ -66,7 +66,7 @@ namespace Monika.AdminController
                     // Additional target check implemented here
                     if (!File.Exists(targets[2]))
                     {
-                        var merged = MarkovUtility.MergeFrom(targets[0], targets[1]);
+                        var merged = MarkovUtilities.MergeFrom(targets[0], targets[1]);
                         var jsonmerged = JsonConvert.SerializeObject(merged, Formatting.Indented);
                         File.WriteAllText(targets[2], jsonmerged);
                     }
@@ -100,7 +100,7 @@ namespace Monika.AdminController
                 if (File.Exists(rest))
                 {
                     var jsonfrom = File.ReadAllText(rest);
-                    var from = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsonfrom);
+                    var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
                     Generator.AddToChain(from);
                 }
                 else

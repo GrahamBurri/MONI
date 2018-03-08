@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
-using MarkovGenerator;
+using MarkovNextGen;
 using Newtonsoft.Json;
 using BestGirl.Responses;
 using Monika.Emotions;
@@ -45,7 +45,7 @@ namespace Monika
         const string TOKFILE = "tokens.pdo";
         Random randy = new Random();
 
-        public MarkovNextGen Generator { get; private set; } = new MarkovNextGen();
+        public Markov Generator { get; private set; } = new Markov();
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
         public EmotionManager Manager { get; private set; }
 
