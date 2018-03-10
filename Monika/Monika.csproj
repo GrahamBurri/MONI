@@ -145,10 +145,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MarkovNextGen\MarkovNextGen.fsproj">
-      <Project>{6c2515a6-fbc4-4df5-9e3a-486d317a47de}</Project>
-      <Name>MarkovNextGen</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Responses\Responses.fsproj">
       <Project>{a10697cf-6053-49d1-8994-da3b28c703d1}</Project>
       <Name>Responses</Name>
