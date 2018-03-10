@@ -4,6 +4,7 @@ open System
 open System.Collections.Generic
 open Newtonsoft.Json
 open System.Linq
+open System.Drawing
 
 type public Link(lst : string list) =
     class
@@ -12,6 +13,9 @@ type public Link(lst : string list) =
 
         new (lst : IEnumerable<string>) =
             Link(lst |> List.ofSeq)
+        
+        new (s) =
+            Link([s])
     
         new () =
             Link([])
@@ -19,11 +23,10 @@ type public Link(lst : string list) =
         member public this.After
             with get() = after
             and set (value) = after <- value
-    
-        // Way more efficient than adding each element individually
-        member public this.AddAfter(lst : IEnumerable<string>) =
-            let _lst = lst |> List.ofSeq
-            after <- (List.append after _lst)
+        
+        member public this.AddAfter(lst) =
+            for x in lst do
+                after <- x :: after
         
         member public this.AddAfter(lst : string list) =
             after <- List.append after lst

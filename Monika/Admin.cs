@@ -51,40 +51,6 @@ namespace Monika.AdminController
                 }
                 
             }
-            else if (cmd.StartsWith("merge"))
-            {
-                var rest = cmd.Substring(6);
-                var targets = rest.Split(' ');
-                if (targets.Length == 2)        // Merge two files
-                {
-                    // File existence check is implemented in Merge methods
-                    MarkovUtilities.MergeTo(targets[0], targets[1]);
-                }
-                else if (targets.Length == 3)   // Merge two files into third
-                {
-                    // File existence check implemented in Merge methods
-                    // Additional target check implemented here
-                    if (!File.Exists(targets[2]))
-                    {
-                        var merged = MarkovUtilities.MergeFrom(targets[0], targets[1]);
-                        var jsonmerged = JsonConvert.SerializeObject(merged, Formatting.Indented);
-                        File.WriteAllText(targets[2], jsonmerged);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error: Target file already exists");
-                        Console.WriteLine("Resol: Ignoring merge request");
-                        Console.WriteLine("_Note: If this is intentional, merge twice");
-                        Console.WriteLine(Environment.NewLine);
-                    }
-                }
-                else // You entered a weird number of filenames
-                {
-                    Console.WriteLine("Error: Invalid merge request");
-                    Console.WriteLine("Resol: Ignoring invalid merge request");
-                    Console.WriteLine(Environment.NewLine);
-                }
-            }
             else if (cmd.StartsWith("cleanse"))
             {
                 // Honestly I'm not sure what you want to do with cleanse
@@ -94,8 +60,6 @@ namespace Monika.AdminController
             }
             else if (cmd.StartsWith("load"))
             {
-                // This is temporary unless you call a method that writes to chain
-                // For persistence just merge your file with markov.pdo
                 var rest = cmd.Substring(5);
                 if (File.Exists(rest))
                 {

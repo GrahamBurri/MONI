@@ -24,14 +24,8 @@ namespace MarkovConsole
                     var rest = cmd.Substring(6);
                     if (File.Exists(rest))
                     {
-                        var chain = new Dictionary<string, MarkovNextGen.Link>();
-                        // var chain = new Dictionary<string, LinkNextGen>();
-                        foreach (var line in File.ReadAllLines(rest))
-                        {
-                            // This way it only gets serialized once
-                            chain = MarkovUtilities.Train(line);
-                            markov.AddToChain(chain);
-                        }
+                        var lines = File.ReadAllLines(rest).ToList();
+                        markov.AddToChain(lines);
                     }
                     else
                     {
@@ -46,13 +40,11 @@ namespace MarkovConsole
                     if (File.Exists(rest))
                     {
                         markov = new Markov(rest);
-                        //markov = new MarkovNextGen(rest);
                     }
                     else
                     {
                         File.WriteAllText(rest, "{}");
                         markov = new Markov(rest);
-                        // markov = new MarkovNextGen(rest);
                         Console.WriteLine("_Warn: Target file does not exist");
                         Console.WriteLine("Resol: Creating target PDO");
                         Console.WriteLine(Environment.NewLine);
@@ -102,7 +94,6 @@ namespace MarkovConsole
                     {
                         // File existence check is implemented in Merge methods
                         MarkovUtilities.MergeTo(targets[0], targets[1]);
-                        //MarkovUtility.MergeTo(targets[0], targets[1]);
                     }
                     else if (targets.Length == 3)   // Merge two files into third
                     {
@@ -132,7 +123,6 @@ namespace MarkovConsole
                     {
                         var jsonfrom = File.ReadAllText(rest);
                         var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
-                        //var from = JsonConvert.DeserializeObject<Dictionary<string, LinkNextGen>>(jsonfrom);
                         markov.AddToChain(from);
                     }
                     else
