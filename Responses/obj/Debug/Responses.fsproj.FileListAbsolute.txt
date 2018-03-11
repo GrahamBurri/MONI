@@ -14,3 +14,5 @@ C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\System.ValueTuple.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\FSharp.Core.xml
 C:\Users\ghbur\Source\Repos\MONI\Responses\obj\Debug\Responses.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\obj\Debug\Responses.pdb
+C:\Users\th1nk\Dropbox\GitHub\MONI\Responses\obj\Debug\Responses.fsprojResolveAssemblyReference.cache
+C:\Users\th1nk\Dropbox\GitHub\MONI\Responses\obj\Debug\Responses.fsproj.CopyComplete
