@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MarkovNextGen;
 using Discord;
 using Discord.WebSocket;
-using Monika.Emotions;
+using Monika.PersonalityController;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -16,8 +16,10 @@ namespace Monika.AdminController
     {
         public DiscordSocketClient Client { get; set; }
         public Markov Generator { get; set; }
-        public EmotionManager Manager { get; set; }
-
+        public BotPersonality Personality { get; set; }
+        public string currentPath = Directory.GetCurrentDirectory();
+        public string dataPath = @"/../../../Data/";
+        
         public void ParseCommand(string cmd)
         {
             if (cmd.StartsWith("markov"))
@@ -34,13 +36,12 @@ namespace Monika.AdminController
                     Console.WriteLine(Environment.NewLine);
                 }
             }
-            else if (cmd.StartsWith("avatar"))
+            else if (cmd.StartsWith("avatar")) // TODO protect against bad input
             {
                 var rest = cmd.Substring(7);
-                if (File.Exists(rest))
+                if (File.Exists(dataPath + rest))
                 {
-                    Manager.Emotion = rest;
-                    Manager.UpdateAvatar().GetAwaiter().GetResult();
+                    Personality.SetAvatar(rest).GetAwaiter().GetResult();
                     Console.WriteLine("Avatar Updated: " + rest);
                 }
                 else
@@ -49,19 +50,17 @@ namespace Monika.AdminController
                     Console.WriteLine("Resol: Ignoring invalid avatar update request");
                     Console.WriteLine(Environment.NewLine);
                 }
-                
+
             }
-            else if (cmd.StartsWith("cleanse"))
+            else if (cmd.StartsWith("say"))
             {
-                // Honestly I'm not sure what you want to do with cleanse
-                Console.WriteLine("_Warn: CLEANSE Request not yet implemented");
-                Console.WriteLine("Resol: Ignoring invalid request");
-                Console.WriteLine(Environment.NewLine);
+                // TODO figure out how to even start with this
+                // we'll need a way to define what channel to say something on, then send a message on that channel
             }
             else if (cmd.StartsWith("load"))
             {
                 var rest = cmd.Substring(5);
-                if (File.Exists(rest))
+                if (File.Exists(dataPath + rest))
                 {
                     var jsonfrom = File.ReadAllText(rest);
                     var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);

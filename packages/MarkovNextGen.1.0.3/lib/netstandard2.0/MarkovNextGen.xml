@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>MarkovNextGen</name></assembly>
+<members>
+<member name="P:MarkovNextGen.Link`1.After(Microsoft.FSharp.Collections.FSharpList{`0})">
+ <summary>
+ Public read-write property that corresponds to the internal list of items
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Link`1.RandomAfter">
+ <summary>
+ Read-only accessor that gets a random item from the list
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Link`1.After">
+ <summary>
+ Public read-write property that corresponds to the internal list of items
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Link`1.AddAfter(`0)">
+ <summary>
+ Adds a single item to the current list
+ </summary>
+ <param name="item">The item to add</param>
+</member>
+<member name="M:MarkovNextGen.Link`1.AddAfter(Microsoft.FSharp.Collections.FSharpList{`0})">
+ <summary>
+ Adds items to the current list
+ </summary>
+ <param name="lst">The items to add</param>
+</member>
+<member name="M:MarkovNextGen.Link`1.AddAfter(System.Collections.Generic.IEnumerable{`0})">
+ <summary>
+ Adds items to the current list.
+ </summary>
+ <param name="items">The items to add</param>
+</member>
+<member name="M:MarkovNextGen.Link`1.#ctor">
+ <summary>
+ Constructor that return an empty Link<'T>
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Link`1.#ctor(`0)">
+ <summary>
+ Constructor that initializes the internal list with a single item
+ </summary>
+ <param name="item">The item to initialize from</param>
+</member>
+<member name="M:MarkovNextGen.Link`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+ <summary>
+ Constructor that initializes the internal list based on an IEnumerable of type T
+ </summary>
+ <param name="lst">The IEnumerable to initialize from</param>
+</member>
+<member name="T:MarkovNextGen.Link`1">
+ <summary>
+ A generic data structure representing a list of T-items that can come after a key item
+ Default constructor initializes the internal list based on a provided F# list type
+ The provided type must have a default constructor
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Link.After(Microsoft.FSharp.Collections.FSharpList{System.String})">
+ <summary>
+ Public read-write property that corresponds to the internal list of strings
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Link.RandomAfter">
+ <summary>
+ Read-only accessor that gets a random string from the list
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Link.After">
+ <summary>
+ Public read-write property that corresponds to the internal list of strings
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Link.AddAfter(System.String)">
+ <summary>
+ Adds a single string to the current list
+ </summary>
+ <param name="s">The string to add</param>
+</member>
+<member name="M:MarkovNextGen.Link.AddAfter(Microsoft.FSharp.Collections.FSharpList{System.String})">
+ <summary>
+ Adds words to the current list
+ </summary>
+ <param name="lst">The strings to add</param>
+</member>
+<member name="M:MarkovNextGen.Link.AddAfter(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Adds words to the current list
+ </summary>
+ <param name="items">The strings to add</param>
+</member>
+<member name="M:MarkovNextGen.Link.#ctor">
+ <summary>
+ Constructor that returns an empty Link
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Link.#ctor(System.String)">
+ <summary>
+ Constructor that initializes the internal list with a single string
+ </summary>
+ <param name="s">The string to initialize with</param>
+</member>
+<member name="M:MarkovNextGen.Link.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Constructor that initializes the internal list based the contents of on an IEnumerable<string>
+ </summary>
+ <param name="lst">The IEnumerable to initialize from</param>
+</member>
+<member name="T:MarkovNextGen.Link">
+ <summary>
+ A data structure representing a list of words that can come after a keyword
+ Default constructor initializes the internal list based on a provided F# string list
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Markov`1.Chain(System.Collections.Generic.Dictionary{`0,MarkovNextGen.Link{`0}})">
+ <summary>
+ Read-only accessor for the chain
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Markov`1.Chain">
+ <summary>
+ Read-only accessor for the chain
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Markov`1.PrintChain">
+ <summary>
+ Prints the chain to console
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Markov`1.LinkToChain(Microsoft.FSharp.Collections.FSharpList{`0})">
+ <summary>
+ Adds a single list of items to the chain without updating the chain file
+ </summary>
+ <param name="items">An F# list of items to be processed</param>
+</member>
+<member name="M:MarkovNextGen.Markov`1.Generate">
+ <summary>
+ Generates markov output with automatic length and a random starting word
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Markov`1.Generate(`0)">
+ <summary>
+ Generates markov output with automatic length and a specified starting item
+ </summary>
+ <remarks>
+ Automatically breaks at 50 items to avoid infinite loops
+ To avoid this, you can call Generate(T, int) to specify your own max length
+</remarks>
+ <param name="item">The starting item</param>
+</member>
+<member name="M:MarkovNextGen.Markov`1.Generate(`0,System.Int32)">
+ <summary>
+ Generates markov output with automatic length based on a specified starting item
+ </summary>
+ <param name="item">The starting item</param>
+ <param name="max">The maximum length of the chain before we assume an infinite loop</param
+</member>
+<member name="M:MarkovNextGen.Markov`1.Dump(System.String)">
+ <summary>
+ Writes the chain to a different file
+ </summary>
+ <param name="_file">The name of the output file</param>
+</member>
+<member name="M:MarkovNextGen.Markov`1.AddToChain(System.Collections.Generic.Dictionary{`0,MarkovNextGen.Link{`0}})">
+ <summary>
+ Merges another chain into this one
+ </summary>
+ <param name="dict">The chain to be merged</param>
+</member>
+<member name="M:MarkovNextGen.Markov`1.AddToChain(System.Collections.Generic.IEnumerable{`0})">
+ <summary>
+ Adds a generic List<'T> of items to the chain and writes to the chain file
+ </summary>
+ <param name=itemss">The list of items to be processed</param>
+</member>
+<member name="M:MarkovNextGen.Markov`1.AddToChain(Microsoft.FSharp.Collections.FSharpList{`0})">
+ <summary>
+ Adds a list of items to the chain and writes to the chain file
+ </summary>
+ <param name="items">The list of items to be added</param>
+</member>
+<member name="M:MarkovNextGen.Markov`1.AddToChain(`0,System.Collections.Generic.IEnumerable{`0})">
+ <summary>
+ Adds a link to the chain and writes to the chain file
+ </summary>
+ <param name="item">The key item to add</param>
+ <param name="link">The list of items that could follow it</param>
+</member>
+<member name="T:MarkovNextGen.Markov`1">
+ <summary>
+ A generic markov generator
+ </summary>
+ <remarks>
+ Takes an optional string parameter 'filename' for the chain file.  Default is 'markov.pdo'
+ </remarks>
+</member>
+<member name="P:MarkovNextGen.Markov.Chain(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link})">
+ <summary>
+ Read-only accessor for the chain
+ </summary>
+</member>
+<member name="P:MarkovNextGen.Markov.Chain">
+ <summary>
+ Read-only accessor for the chain
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Markov.PrintChain">
+ <summary>
+ Prints the chain to console
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Markov.LinkToChain(System.String)">
+ <summary>
+ Adds a single line of text to the chain without updating the chain file
+ </summary>
+ <param name="s">The line of text to be processed</param>
+</member>
+<member name="M:MarkovNextGen.Markov.Generate">
+ <summary>
+ Generates a string with automatic length based on a random starting word
+ </summary>
+</member>
+<member name="M:MarkovNextGen.Markov.Generate(System.Int32)">
+ <summary>
+ Generates a 'sentence' based on a specified length and random starting word
+ </summary>
+ <param name="length">The number of words to generate</param>
+</member>
+<member name="M:MarkovNextGen.Markov.Generate(System.String)">
+ <summary>
+ Generates a string with automatic length based on a specified starting word
+ </summary>
+ <param name="word">The starting word</param>
+</member>
+<member name="M:MarkovNextGen.Markov.Generate(System.Int32,System.String)">
+ <summary>
+ Generates a 'sentence' based on a specified length and starting word
+ </summary>
+ <param name="length">The number of words to generate</param>
+ <param name="word">The starting word</param>
+</member>
+<member name="M:MarkovNextGen.Markov.Dump(System.String)">
+ <summary>
+ Writes the chain to a different file
+ </summary>
+ <param name="_file">The name of the output file</param>
+</member>
+<member name="M:MarkovNextGen.Markov.AddToChain(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link})">
+ <summary>
+ Merges another chain into this one
+ </summary>
+ <param name="dict">The chain to be merged</param>
+</member>
+<member name="M:MarkovNextGen.Markov.AddToChain(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Adds multiple lines of text to the chain and writes to the chain file
+ </summary>
+ <param name="lst">The lines of text to be processed</param>
+</member>
+<member name="M:MarkovNextGen.Markov.AddToChain(System.String)">
+ <summary>
+ Adds a single line of text to the chain and writes to the chain file
+ </summary>
+ <param name="s">The line of text to be processed</param>
+</member>
+<member name="M:MarkovNextGen.Markov.AddToChain(System.String,System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Adds a link to the chain and writes to the chain file
+ </summary>
+ <param name="word">The key word to add</param>
+ <param name="link">The list of words that could follow it</param>
+</member>
+<member name="T:MarkovNextGen.Markov">
+ <summary>
+ A markov generator
+ </summary>
+ <remarks>
+ Takes an optional string parameter 'filename' for the chain file.  Default is 'markov.pdo'
+ </remarks>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.MergeTo(System.String,System.String)">
+ <summary>
+ Merges one chain file into another
+ </summary>
+ <param name="from">The name of the file to merge from</param>
+ <param name="target">The name of the file to merge to</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.MergeFrom(System.String,System.String)">
+ <summary>
+ Merges two files into one chain
+ </summary>
+ <param name="from">The name of the first file</param>
+ <param name="target">The name of the second file</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.Autogenerate(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link},System.String)">
+ <summary>
+ Static generation of a markov string with automatic length
+ </summary>
+ <param name="chain">The chain to use for generation</param>
+ <param name="word">The starting word</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.Generate(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link},System.Int32,System.String)">
+ <summary>
+ Static generation of markov string based on specified length and starting word
+ </summary>
+ <param name="chain">The chain to use for generation</param>
+ <param name="length">The number of words in the generated string</param>
+ <param name="word">The starting word</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.PrintChain(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link})">
+ <summary>
+ Static method for printing a chain to console with nice formatting
+ </summary>
+ <param name="chain">The chain to print</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.Merge(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link},System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link})">
+ <summary>
+ Static method for merging two chains into a new one
+ </summary>
+ <param name="from">The first chain</param>
+ <param name="target">The second chain</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.RemoveAll(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link},System.String)">
+ <summary>
+ Static method for removing all occurences of a word from a chain
+ </summary>
+ <param name="chain">The chain to remove from</param>
+ <param name="word">The word to delete</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.RemoveLink(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link},System.String)">
+ <summary>
+ Static method for removing a link from a chain
+ </summary>
+ <param name="chain">The chain to remove from</param>
+ <param name="word">The key word to delete</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.AddLink(System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link},System.String,System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Static method for adding a link to a chain
+ </summary>
+ <param name="chain">The chain to add to</param>
+ <param name="word">The key word</param>
+ <param name="link">The list of potential words after</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.WriteChain(System.String,System.Collections.Generic.Dictionary{System.String,MarkovNextGen.Link})">
+ <summary>
+ Static method for writing a chain to a file
+ </summary>
+ <param name="filename">The file name</param>
+ <param name="chain">The chain to serialize</param>
+</member>
+<member name="M:MarkovNextGen.MarkovUtilities.ReadChain(System.String)">
+ <summary>
+ Static method for reading a chain from a file
+ </summary>
+ <param name="filename">The name of the file containing the chain</param>
+</member>
+</members>
+</doc>

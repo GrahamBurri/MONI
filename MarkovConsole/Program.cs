@@ -7,14 +7,13 @@ using MarkovNextGen;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace MarkovConsole
+namespace MarkovConsole // A console for testing and manipulating Markov chains
 {
     class Program
     {
         static void Main(string[] args)
         {
             var markov = new Markov();
-            //var markov = new MarkovNextGen();
             Console.Write("markov> ");
             var cmd = Console.ReadLine();
             while (cmd != "exit")

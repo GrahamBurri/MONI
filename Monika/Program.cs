@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Immutable;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using MarkovNextGen;
 using Newtonsoft.Json;
-using BestGirl.Responses;
-using Monika.Emotions;
+using Monika.PersonalityController;
 using Monika.AdminController;
 
 namespace Monika
@@ -19,15 +19,15 @@ namespace Monika
             var mkbot = new MonikaBot();
             mkbot.MainAsync().GetAwaiter().GetResult(); // Just let it run in background
 
-            while(!mkbot.IsReady)
-            {
-                // Wait for bot to be ready
-            }
+            //while(!mkbot.IsReady)
+            //{
+            //    // Wait for bot to be ready
+            //}
 
             AdminConsole admin = new AdminConsole();
             admin.Client = mkbot.Client;
             admin.Generator = mkbot.Generator;
-            admin.Manager = mkbot.Manager;
+            admin.Personality = mkbot.Personality;
 
             Console.Write("> ");
             var cmd = Console.ReadLine();
@@ -47,7 +47,8 @@ namespace Monika
 
         public Markov Generator { get; private set; } = new Markov();
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
-        public EmotionManager Manager { get; private set; }
+        public BotPersonality Personality { get; set; }
+        public List<String> ResponsesList { get; set; }
 
         public Boolean IsReady { get; private set; } = false;
 
@@ -86,10 +87,10 @@ namespace Monika
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
-        //public async Task SendMessage(String message)
-        //{
-        // TODO add asynchronous message sending
-        //}
+        public async Task SendMessage(String message)
+        {
+            await Client.CurrentUser.SendMessageAsync(message);
+        }
         public async Task MessageReceived(SocketMessage msg)
         {
             var author = msg.Author.Username;
@@ -124,15 +125,16 @@ namespace Monika
                     }
                     else
                     {
-                        var line = Lines.VoiceLines.RandomElement<string>();
-                        var response = line.Replace("[player]", msg.Author.Mention);
-                        await msg.Channel.SendMessageAsync(response);
+                        // var line = Lines.VoiceLines.RandomElement<string>(); TODO FIX THIS SHIT
+                        // var response = line.Replace("[player]", msg.Author.Mention);
+                        // await msg.Channel.SendMessageAsync(response);
                     }
                 }
                 else if (text.StartsWith("delete"))
                 {
                     var character = text.Substring(7);
                     var response = character + ".chr deleted";
+                    await msg.Channel.SendMessageAsync("os.remove(" + character + ".chr)\n");
                     await msg.Channel.SendMessageAsync(response);
                 }
                 else if (msg.Channel.Name.StartsWith("markov-")) 
@@ -156,9 +158,10 @@ namespace Monika
             }
         }
 
-        public async Task Ready()
+        public async Task Ready() // Seems deprecated unless an async constructor is implemented as part of Personality
         {
-            Manager = new EmotionManager(Client);
+            // Manager = new EmotionManager(Client);
+            Personality.Client = Client;
             IsReady = true;
             // await ChangeAvatar("someavatar.jpg");
         }
@@ -170,6 +173,7 @@ namespace Monika
             Client.MessageReceived += MessageReceived;
             Client.Ready += Ready;
 
+            //var TOKEN = Tokens.Release;
             var TOKEN = Tokens.Development;
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);

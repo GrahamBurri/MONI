@@ -476,6 +476,15 @@
 
  <exception cref="System.ArgumentNullException">Thrown when the input sequence is null.</exception>
 </member>
+<member name="M:Microsoft.FSharp.Collections.SeqModule.Transpose``2(System.Collections.Generic.IEnumerable{``0})">
+ <summary>Returns the transpose of the given sequence of sequences.</summary>
+ <remarks>This function returns a sequence that digests the whole initial sequence as soon as
+ that sequence is iterated. As a result this function should not be used with
+ large or infinite sequences.</remarks>
+ <param name="source">The input sequence.</param>
+ <returns>The transposed sequence.</returns>
+ <exception cref="System.ArgumentNullException">Thrown when the input sequence is null.</exception>
+</member>
 <member name="M:Microsoft.FSharp.Collections.SeqModule.TryPick``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},System.Collections.Generic.IEnumerable{``0})">
  <summary>Applies the given function to successive elements, returning the first
  result where the function returns "Some(x)".</summary>
@@ -1707,6 +1716,13 @@
  <param name="array">The input list.</param>
  <returns>The result list.</returns>
 </member>
+<member name="M:Microsoft.FSharp.Collections.ListModule.Transpose``1(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Collections.FSharpList{``0}})">
+ <summary>Returns the transpose of the given sequence of lists.</summary>
+ <param name="lists">The input sequence of list.</param>
+ <returns>The transposed list.</returns>
+ <exception cref="System.ArgumentNullException">Thrown when the input sequence is null.</exception>
+ <exception cref="System.ArgumentException">Thrown when the input lists differ in length.</exception>
+</member>
 <member name="M:Microsoft.FSharp.Collections.ListModule.TryHead``1(Microsoft.FSharp.Collections.FSharpList{``0})">
  <summary>Returns the first element of the list, or
  <c>None</c> if the list is empty.</summary>
@@ -2487,6 +2503,13 @@
  <param name="array">The input array.</param>
  <returns>The result array.</returns>
  <exception cref="System.ArgumentNullException">Thrown when the input array is null.</exception>
+</member>
+<member name="M:Microsoft.FSharp.Collections.ArrayModule.Transpose``1(System.Collections.Generic.IEnumerable{``0[]})">
+ <summary>Returns the transpose of the given sequence of arrays.</summary>
+ <param name="arrays">The input sequence of arrays.</param>
+ <returns>The transposed array.</returns>
+ <exception cref="System.ArgumentNullException">Thrown when the input sequence is null.</exception>
+ <exception cref="System.ArgumentException">Thrown when the input arrays differ in length.</exception>
 </member>
 <member name="M:Microsoft.FSharp.Collections.ArrayModule.ToSeq``1(``0[])">
  <summary>Views the given array as a sequence.</summary>
@@ -5378,6 +5401,11 @@
 <member name="T:Microsoft.FSharp.Quotations.PatternsModule">
  <summary>Contains a set of primitive F# active patterns to analyze F# expression objects</summary>
 </member>
+<member name="M:Microsoft.FSharp.NativeInterop.NativePtrModule.ToByRefInlined``1(``0*)">
+ <summary>Converts a given typed native pointer to a managed pointer.</summary>
+ <param name="address">The input pointer.</param>
+ <returns>The managed pointer.</returns>
+</member>
 <member name="M:Microsoft.FSharp.NativeInterop.NativePtrModule.StackAllocate``1(System.Int32)">
  <summary>Allocates a region of memory on the stack.</summary>
  <param name="count">The number of objects of type T to allocate.</param>
@@ -5855,6 +5883,21 @@
  <param name="cancellationContinuation">The function called on cancellation.</param>
  <param name="cancellationToken">The <c>CancellationToken</c> to associate with the computation.
  The default is used if this parameter is not provided.</param>
+</member>
+<member name="M:Microsoft.FSharp.Control.FSharpAsync.StartImmediateAsTask``1(Microsoft.FSharp.Control.FSharpAsync{``0},Microsoft.FSharp.Core.FSharpOption{System.Threading.CancellationToken})">
+ <summary>Runs an asynchronous computation, starting immediately on the current operating system, 
+ but also returns the execution as <c>System.Threading.Tasks.Task</c> 
+ </summary>
+ <remarks>If no cancellation token is provided then the default cancellation token is used.
+ You may prefer using this method if you want to achive a similar behviour to async await in C# as 
+ async computation starts on the current thread with an ability to return a result.
+ </remarks>
+ <param name="computation">The asynchronous computation to execute.</param>
+ <param name="cancellationToken">The <c>CancellationToken</c> to associate with the computation.
+ The default is used if this parameter is not provided.</param>
+ <returns>A <c>System.Threading.Tasks.Task</c> that will be completed
+ in the corresponding state once the computation terminates (produces the result, throws exception or gets canceled)</returns>
+ </returns> 
 </member>
 <member name="M:Microsoft.FSharp.Control.FSharpAsync.StartImmediate(Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpOption{System.Threading.CancellationToken})">
  <summary>Runs an asynchronous computation, starting immediately on the current operating system
