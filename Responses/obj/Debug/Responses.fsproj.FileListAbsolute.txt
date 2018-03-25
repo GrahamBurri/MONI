@@ -14,7 +14,6 @@ C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\System.ValueTuple.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\FSharp.Core.xml
 C:\Users\ghbur\Source\Repos\MONI\Responses\obj\Debug\Responses.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\obj\Debug\Responses.pdb
-<<<<<<< HEAD
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\netstandard.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\System.AppContext.dll
@@ -128,7 +127,3 @@ C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\ru\FSharp.Core.resources.dl
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\tr\FSharp.Core.resources.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\zh-Hans\FSharp.Core.resources.dll
 C:\Users\ghbur\Source\Repos\MONI\Responses\bin\Debug\zh-Hant\FSharp.Core.resources.dll
-=======
-C:\Users\th1nk\Dropbox\GitHub\MONI\Responses\obj\Debug\Responses.fsprojResolveAssemblyReference.cache
-C:\Users\th1nk\Dropbox\GitHub\MONI\Responses\obj\Debug\Responses.fsproj.CopyComplete
->>>>>>> 5a0ba5162daebef6b53522fa847dba507d9cc385
