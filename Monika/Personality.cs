@@ -15,6 +15,7 @@ namespace Monika.PersonalityController
         public DiscordSocketClient Client { private get; set; }
         public Dictionary<String, String> emotionDictionary { get; private set; }
         public Dictionary<String, String> responseDictionary { get; private set; }
+        public String currentEmotion { get; private set; }
 
         public BotPersonality(DiscordSocketClient inputClient)
         {
@@ -27,7 +28,7 @@ namespace Monika.PersonalityController
             // If the response includes an [emotion] set the bot's emotion to the respective emotion if it exists
             return null;
         }
-        public async Task SetAvatar(string avatar) // TODO update this to properly read files
+        public async Task SetAvatar(string avatar) // TODO update this to properly read files; move?
         {
             var user = Client.CurrentUser;
             if (File.Exists(avatar))
@@ -42,5 +43,6 @@ namespace Monika.PersonalityController
                 }
             }
         }
+
     }
 }

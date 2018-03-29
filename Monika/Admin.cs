@@ -18,7 +18,7 @@ namespace Monika.AdminController
         public Markov Generator { get; set; }
         public BotPersonality Personality { get; set; }
         public string currentPath = Directory.GetCurrentDirectory();
-        public string dataPath = @"/../../../Data/";
+        public string dataPath = @"\..\..\..\Data\";
         
         public void ParseCommand(string cmd)
         {
