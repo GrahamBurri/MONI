@@ -25,6 +25,8 @@ namespace Monika
             //}
 
             AdminConsole admin = new AdminConsole();
+            mkbot.Personality = new BotPersonality(mkbot.Client);
+
             admin.Client = mkbot.Client;
             admin.Generator = mkbot.Generator;
             admin.Personality = mkbot.Personality;
@@ -143,29 +145,13 @@ namespace Monika
                 }
             }
         }
-
-        // Deprecated?
-        public async Task ChangeAvatar(string filename)
-        {
-            var me = Client.CurrentUser;
-            using (FileStream fs = File.OpenRead(filename))
-            {
-                var avatar = new Image(fs);
-                await me.ModifyAsync(x =>
-                {
-                    x.Avatar = avatar;
-                });
-            }
-        }
-
         public async Task Ready() // Seems deprecated unless an async constructor is implemented as part of Personality
         {
             // Manager = new EmotionManager(Client);
             Personality.Client = Client;
-            IsReady = true;
+            IsReady = true; // Just setting this to true so it'll run
             // await ChangeAvatar("someavatar.jpg");
         }
-
         public async Task MainAsync()
         {
 
@@ -173,8 +159,7 @@ namespace Monika
             Client.MessageReceived += MessageReceived;
             Client.Ready += Ready;
 
-            //var TOKEN = Tokens.Release;
-            var TOKEN = Tokens.Development;
+            var TOKEN = Tokens.Release;;
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);
             await Client.StartAsync();

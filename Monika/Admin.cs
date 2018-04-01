@@ -18,7 +18,6 @@ namespace Monika.AdminController
         public Markov Generator { get; set; }
         public BotPersonality Personality { get; set; }
         public string currentPath = Directory.GetCurrentDirectory();
-        public string dataPath = @"\..\..\..\Data\";
         
         public void ParseCommand(string cmd)
         {
@@ -39,7 +38,7 @@ namespace Monika.AdminController
             else if (cmd.StartsWith("avatar")) // TODO protect against bad input
             {
                 var rest = cmd.Substring(7);
-                if (File.Exists(dataPath + rest))
+                if (File.Exists(rest))
                 {
                     Personality.SetAvatar(rest).GetAwaiter().GetResult();
                     Console.WriteLine("Avatar Updated: " + rest);
@@ -52,6 +51,36 @@ namespace Monika.AdminController
                 }
 
             }
+            else if (cmd.StartsWith("cd"))
+            {
+                var rest = cmd.Substring(3);
+                if(Directory.Exists(Directory.GetCurrentDirectory() + rest))
+                {
+                    Directory.SetCurrentDirectory(Directory.GetCurrentDirectory() + rest);
+                    Console.WriteLine("Succesfully changed current directory to " + rest + ".");
+                }
+                else if(Directory.Exists(rest))
+                {
+                    Directory.SetCurrentDirectory(rest);
+                    Console.WriteLine("Succesfully changed current directory to " + rest + ".");
+                }
+                else
+                {
+                    Console.WriteLine("Error: Path does not exist");
+                    Console.WriteLine("Resol: Ignoring invalid cd request");
+                }
+            }
+            else if (cmd.Equals("pwd"))
+            {
+                Console.WriteLine(Directory.GetCurrentDirectory());
+            }
+            else if (cmd.Equals("ls"))
+            {
+                foreach(String file in Directory.GetFiles(Directory.GetCurrentDirectory()))
+                {
+                    Console.WriteLine(file);
+                }
+            }
             else if (cmd.StartsWith("say"))
             {
                 // TODO figure out how to even start with this
@@ -60,7 +89,7 @@ namespace Monika.AdminController
             else if (cmd.StartsWith("load"))
             {
                 var rest = cmd.Substring(5);
-                if (File.Exists(dataPath + rest))
+                if (File.Exists(Directory.GetCurrentDirectory() + rest))
                 {
                     var jsonfrom = File.ReadAllText(rest);
                     var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
