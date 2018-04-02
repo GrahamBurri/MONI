@@ -7,14 +7,14 @@ using Discord;
 using Discord.WebSocket;
 using MarkovNextGen;
 using Newtonsoft.Json;
-using Monika.PersonalityController;
+using Monika.IdentityController;
 using Monika.AdminController;
 
 namespace Monika
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args) // Any reason for this to be non-public?
         {
             var mkbot = new MonikaBot();
             mkbot.MainAsync().GetAwaiter().GetResult(); // Just let it run in background
@@ -25,7 +25,7 @@ namespace Monika
             //}
 
             AdminConsole admin = new AdminConsole();
-            mkbot.Personality = new BotPersonality(mkbot.Client);
+            mkbot.Personality = new Personality(mkbot.Client);
 
             admin.Client = mkbot.Client;
             admin.Generator = mkbot.Generator;
@@ -49,7 +49,7 @@ namespace Monika
 
         public Markov Generator { get; private set; } = new Markov();
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
-        public BotPersonality Personality { get; set; }
+        public Personality Personality { get; set; }
         public List<String> ResponsesList { get; set; }
 
         public Boolean IsReady { get; private set; } = false;
@@ -159,7 +159,8 @@ namespace Monika
             Client.MessageReceived += MessageReceived;
             Client.Ready += Ready;
 
-            var TOKEN = Tokens.Release;;
+            // var TOKEN = Tokens.Release;;
+            var TOKEN = "NDI0NDE0MzAxMjAyMjg0NTQ1.DaBarg.o6R2nIsybw3sUZ2TftrKQsxmXwg";
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);
             await Client.StartAsync();
@@ -199,11 +200,11 @@ namespace Monika
             Random randy = new Random();
             return lst[randy.Next(0, lst.Length)];
         }
-
         public static Boolean OneIn(int i)
         {
             Random randy = new Random();
             return (randy.Next(0, i) == 1);
         }
     }
+
 }

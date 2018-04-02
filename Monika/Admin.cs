@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MarkovNextGen;
 using Discord;
 using Discord.WebSocket;
-using Monika.PersonalityController;
+using Monika.IdentityController;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -16,9 +16,19 @@ namespace Monika.AdminController
     {
         public DiscordSocketClient Client { get; set; }
         public Markov Generator { get; set; }
-        public BotPersonality Personality { get; set; }
-        public string currentPath = Directory.GetCurrentDirectory();
-        
+        public Personality Personality { get; set; }
+        private string CurrentDirectory
+        {
+            get
+            {
+                return Directory.GetCurrentDirectory();
+            }
+            set
+            {
+                Directory.SetCurrentDirectory(value);
+            }
+        }
+
         public void ParseCommand(string cmd)
         {
             if (cmd.StartsWith("markov"))
@@ -54,9 +64,9 @@ namespace Monika.AdminController
             else if (cmd.StartsWith("cd"))
             {
                 var rest = cmd.Substring(3);
-                if(Directory.Exists(Directory.GetCurrentDirectory() + rest))
+                if(Directory.Exists(CurrentDirectory + rest))
                 {
-                    Directory.SetCurrentDirectory(Directory.GetCurrentDirectory() + rest);
+                    Directory.SetCurrentDirectory(CurrentDirectory + rest);
                     Console.WriteLine("Succesfully changed current directory to " + rest + ".");
                 }
                 else if(Directory.Exists(rest))
@@ -72,11 +82,11 @@ namespace Monika.AdminController
             }
             else if (cmd.Equals("pwd"))
             {
-                Console.WriteLine(Directory.GetCurrentDirectory());
+                Console.WriteLine(CurrentDirectory);
             }
             else if (cmd.Equals("ls"))
             {
-                foreach(String file in Directory.GetFiles(Directory.GetCurrentDirectory()))
+                foreach(String file in Directory.GetFiles(CurrentDirectory))
                 {
                     Console.WriteLine(file);
                 }
@@ -89,7 +99,7 @@ namespace Monika.AdminController
             else if (cmd.StartsWith("load"))
             {
                 var rest = cmd.Substring(5);
-                if (File.Exists(Directory.GetCurrentDirectory() + rest))
+                if (File.Exists(CurrentDirectory + rest))
                 {
                     var jsonfrom = File.ReadAllText(rest);
                     var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
@@ -106,8 +116,9 @@ namespace Monika.AdminController
             {
                 Console.WriteLine("Error: Unknown request");
                 Console.WriteLine("Resol: Ignoring unknown request");
-                Console.WriteLine(Environment.NewLine);
+                //Console.WriteLine(Environment.NewLine);
             }
         }
     }
+
 }
