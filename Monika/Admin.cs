@@ -66,12 +66,15 @@ namespace Monika.AdminController
                 var rest = cmd.Substring(3);
                 if(Directory.Exists(CurrentDirectory + rest))
                 {
-                    Directory.SetCurrentDirectory(CurrentDirectory + rest);
+                    // Directory.SetCurrentDirectory(CurrentDirectory + rest);
+                    // ^ Don't need that anymore, can just do the following:
+                    CurrentDirectory += rest;
                     Console.WriteLine("Succesfully changed current directory to " + rest + ".");
                 }
                 else if(Directory.Exists(rest))
                 {
-                    Directory.SetCurrentDirectory(rest);
+                    // Directory.SetCurrentDirectory(rest);
+                    CurrentDirectory = rest;
                     Console.WriteLine("Succesfully changed current directory to " + rest + ".");
                 }
                 else
