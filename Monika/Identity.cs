@@ -48,6 +48,7 @@ namespace Monika.IdentityController
                 using (var fs = File.OpenRead(avatar))
                 {
                     var img = new Discord.Image(fs);
+                    await Task.Delay(21); // This should keep Discord from limiting the bot
                     await user.ModifyAsync(x =>
                     {
                         x.Avatar = img;
