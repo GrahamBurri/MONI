@@ -19,10 +19,13 @@ namespace Monika
             var mkbot = new MonikaBot();
             mkbot.MainAsync().GetAwaiter().GetResult(); // Just let it run in background
 
-            //while(!mkbot.IsReady)
-            //{
-            //    // Wait for bot to be ready
-            //}
+            // I really hate doing this because it'll block main() entirely while the bot boots up in the background
+            // There's alternative ways but I don't want to have to go back and forth between event handlers, yk?
+            // We can maybe implement that in a future update
+            while (!mkbox.IsReady)
+            {
+                // Wait for bot to be ready
+            }
 
             AdminConsole admin = new AdminConsole();
             mkbot.Personality = new Personality(mkbot.Client);
@@ -139,18 +142,15 @@ namespace Monika
                     await msg.Channel.SendMessageAsync("os.remove(" + character + ".chr)\n");
                     await msg.Channel.SendMessageAsync(response);
                 }
-                else if (msg.Channel.Name.StartsWith("markov-")) 
+                else if (msg.Channel.Name.StartsWith("markov-"))
                 {
                     Generator.AddToChain(text); // Record the message
                 }
             }
         }
-        public async Task Ready() // Seems deprecated unless an async constructor is implemented as part of Personality
+        public async Task Ready()
         {
-            // Manager = new EmotionManager(Client);
-            Personality.Client = Client;
-            IsReady = true; // Just setting this to true so it'll run
-            // await ChangeAvatar("someavatar.jpg");
+            IsReady = true; // Tell Main() to continue
         }
         public async Task MainAsync()
         {
