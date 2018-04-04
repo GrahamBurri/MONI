@@ -22,7 +22,7 @@ namespace Monika
             // I really hate doing this because it'll block main() entirely while the bot boots up in the background
             // There's alternative ways but I don't want to have to go back and forth between event handlers, yk?
             // We can maybe implement that in a future update
-            while (!mkbox.IsReady)
+            while (!mkbot.IsReady)
             {
                 // Wait for bot to be ready
             }
