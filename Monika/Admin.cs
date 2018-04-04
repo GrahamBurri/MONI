@@ -17,6 +17,7 @@ namespace Monika.AdminController
         public DiscordSocketClient Client { get; set; }
         public Markov Generator { get; set; }
         public Personality Personality { get; set; }
+        public List<ISocketMessageChannel> Channels { get; set; }
         private string CurrentDirectory
         {
             get
@@ -42,7 +43,6 @@ namespace Monika.AdminController
                 {
                     Console.WriteLine("Error: Invalid length");
                     Console.WriteLine("Resol: Ignoring invalid markov request");
-                    Console.WriteLine(Environment.NewLine);
                 }
             }
             else if (cmd.StartsWith("avatar")) // TODO protect against bad input
@@ -57,7 +57,6 @@ namespace Monika.AdminController
                 {
                     Console.WriteLine("Error: Avatar file does not exist");
                     Console.WriteLine("Resol: Ignoring invalid avatar update request");
-                    Console.WriteLine(Environment.NewLine);
                 }
 
             }
@@ -96,8 +95,17 @@ namespace Monika.AdminController
             }
             else if (cmd.StartsWith("say"))
             {
-                // TODO figure out how to even start with this
-                // we'll need a way to define what channel to say something on, then send a message on that channel
+                int i = 0;
+                foreach (ISocketMessageChannel Channel in Channels)
+                {
+                    Console.WriteLine(i + ": " + Channel.Name + " " + Channel.Id);
+                    i++;
+                }
+                Console.WriteLine("Which channel should the message be sent on?");
+                int CInput = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("What should the message say?");
+                string MInput = Console.ReadLine();
+                Channels[CInput].SendMessageAsync(MInput, false, null, null);
             }
             else if (cmd.StartsWith("load"))
             {
@@ -112,14 +120,12 @@ namespace Monika.AdminController
                 {
                     Console.WriteLine("Error: Target file does not exist");
                     Console.WriteLine("Resol: Ignoring invalid load request");
-                    Console.WriteLine(Environment.NewLine);
                 }
             }
             else
             {
                 Console.WriteLine("Error: Unknown request");
                 Console.WriteLine("Resol: Ignoring unknown request");
-                //Console.WriteLine(Environment.NewLine);
             }
         }
     }

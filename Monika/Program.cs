@@ -33,6 +33,7 @@ namespace Monika
             admin.Client = mkbot.Client;
             admin.Generator = mkbot.Generator;
             admin.Personality = mkbot.Personality;
+            admin.Channels = mkbot.Channels;
 
             Console.Write("> ");
             var cmd = Console.ReadLine();
@@ -54,7 +55,7 @@ namespace Monika
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
         public Personality Personality { get; set; }
         public List<String> ResponsesList { get; set; }
-
+        public List<ISocketMessageChannel> Channels = new List<ISocketMessageChannel>();
         public Boolean IsReady { get; private set; } = false;
 
         TokenSet Tokens
@@ -92,10 +93,6 @@ namespace Monika
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
-        public async Task SendMessage(String message)
-        {
-            await Client.CurrentUser.SendMessageAsync(message);
-        }
         public async Task MessageReceived(SocketMessage msg)
         {
             var author = msg.Author.Username;
@@ -103,6 +100,10 @@ namespace Monika
 
             if (author != Client.CurrentUser.Username) // Don't process our own messages
             {
+                if(Channels.IndexOf(msg.Channel) == -1) // Record the channel ID if it's new
+                {
+                    Channels.Add(msg.Channel);
+                }
                 if (TaggedIn(msg, Client.CurrentUser.Username))
                 {
                     if (text.Contains(" say "))
