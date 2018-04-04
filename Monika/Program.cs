@@ -100,7 +100,9 @@ namespace Monika
 
             if (author != Client.CurrentUser.Username) // Don't process our own messages
             {
-                if(Channels.IndexOf(msg.Channel) == -1) // Record the channel ID if it's new
+                // if(Channels.IndexOf(msg.Channel) == -1) // Record the channel ID if it's new
+                // ^ Woah
+                if (!Channels.Contains(msg.Channel))
                 {
                     Channels.Add(msg.Channel);
                 }

@@ -95,17 +95,24 @@ namespace Monika.AdminController
             }
             else if (cmd.StartsWith("say"))
             {
-                int i = 0;
-                foreach (ISocketMessageChannel Channel in Channels)
+                var rest = cmd.Substring(4);
+                for (int i = 0; i < Channels.Count, i++)
                 {
-                    Console.WriteLine(i + ": " + Channel.Name + " " + Channel.Id);
-                    i++;
+                    Console.WriteLine(String.Format("{} :  {} {}", i, Channel.Name, Channel.Id));
                 }
                 Console.WriteLine("Which channel should the message be sent on?");
-                int CInput = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("What should the message say?");
-                string MInput = Console.ReadLine();
-                Channels[CInput].SendMessageAsync(MInput, false, null, null);
+                Console.Write("Which channel ?> ");
+                if (Int32.TryParse(Console.ReadLine(), out int index))
+                {
+                    var msgtask = Channels[index].SendMessageAsync(rest);
+                    msgtask.GetAwaiter().GetResult(); // Don't return until the message is sent
+                    Console.WriteLine("Message Sent");
+                }
+                else
+                {
+                    Console.WriteLine("Index out of range (or just shitty)");
+                }
+
             }
             else if (cmd.StartsWith("load"))
             {
