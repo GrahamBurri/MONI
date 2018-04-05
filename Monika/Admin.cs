@@ -17,7 +17,15 @@ namespace Monika.AdminController
         public DiscordSocketClient Client { get; set; }
         public Markov Generator { get; set; }
         public Personality Personality { get; set; }
-        public List<ISocketMessageChannel> Channels { get; set; }
+        public List<ChannelInfo> Channels
+        {
+            get
+            {
+                var contents = File.ReadAllText("channels.pdo");
+                return JsonConvert.DeserializeObject<List<ChannelInfo>>(contents);
+            }
+        }
+
         private string CurrentDirectory
         {
             get
@@ -96,15 +104,16 @@ namespace Monika.AdminController
             else if (cmd.StartsWith("say"))
             {
                 var rest = cmd.Substring(4);
-                for (int i = 0; i < Channels.Count, i++)
+                Console.WriteLine("Channels :");
+                for (int i = 0; i < Channels.Count; i++)
                 {
-                    Console.WriteLine(String.Format("{} :  {} {}", i, Channel.Name, Channel.Id));
+                    Console.WriteLine(String.Format("\t{0} : '{1}' In '{2}' : {3}", i, Channels[i].ChannelName, Channels[i].ServerName, Channels[i].Id));
                 }
-                Console.WriteLine("Which channel should the message be sent on?");
-                Console.Write("Which channel ?> ");
+                Console.Write(Environment.NewLine + "Which channel ?> ");
                 if (Int32.TryParse(Console.ReadLine(), out int index))
                 {
-                    var msgtask = Channels[index].SendMessageAsync(rest);
+                    var _channel = Client.GetChannel(Channels[index].Id) as ISocketMessageChannel;
+                    var msgtask = _channel.SendMessageAsync(rest);
                     msgtask.GetAwaiter().GetResult(); // Don't return until the message is sent
                     Console.WriteLine("Message Sent");
                 }

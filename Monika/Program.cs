@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Collections.Immutable;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -33,7 +34,6 @@ namespace Monika
             admin.Client = mkbot.Client;
             admin.Generator = mkbot.Generator;
             admin.Personality = mkbot.Personality;
-            admin.Channels = mkbot.Channels;
 
             Console.Write("> ");
             var cmd = Console.ReadLine();
@@ -55,7 +55,6 @@ namespace Monika
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
         public Personality Personality { get; set; }
         public List<String> ResponsesList { get; set; }
-        public List<ISocketMessageChannel> Channels = new List<ISocketMessageChannel>();
         public Boolean IsReady { get; private set; } = false;
 
         TokenSet Tokens
@@ -88,6 +87,29 @@ namespace Monika
             return _tagged;
         }
 
+        public List<ChannelInfo> GetChannels()
+        {
+            if (File.Exists("channels.pdo"))
+            {
+                var contents = File.ReadAllText("channels.pdo");
+                return JsonConvert.DeserializeObject<List<ChannelInfo>>(contents);
+            }
+            else
+            {
+                return new List<ChannelInfo>();
+            }
+        }
+
+        public void AddChannel(string server, string name, UInt64 id)
+        {
+            var channels = GetChannels();
+            var info = new ChannelInfo(server, name, id);
+            channels.Add(info);
+            var json = JsonConvert.SerializeObject(channels, Formatting.Indented);
+            Console.WriteLine(json); // for now
+            File.WriteAllText("channels.pdo", json);
+        }
+
         public static Task Log(LogMessage msg)
         {
             Console.WriteLine(msg.ToString());
@@ -100,12 +122,17 @@ namespace Monika
 
             if (author != Client.CurrentUser.Username) // Don't process our own messages
             {
-                // if(Channels.IndexOf(msg.Channel) == -1) // Record the channel ID if it's new
-                // ^ Woah
-                if (!Channels.Contains(msg.Channel))
+                // Check if channel exists in our file
+                var matches = GetChannels().Where(c => c.Id == msg.Channel.Id).ToList();
+                if (matches.Count == 0) // If the channel isn't already in the list
                 {
-                    Channels.Add(msg.Channel);
+                    if (msg.Channel is SocketGuildChannel) // Only returns true we're in a server as opposed to DM or gorup chat
+                    {
+                        var guildchannel = msg.Channel as SocketGuildChannel;
+                        AddChannel(guildchannel.Guild.Name, guildchannel.Name, msg.Channel.Id);
+                    }
                 }
+
                 if (TaggedIn(msg, Client.CurrentUser.Username))
                 {
                     if (text.Contains(" say "))
@@ -163,7 +190,7 @@ namespace Monika
             Client.Ready += Ready;
 
             // var TOKEN = Tokens.Release;;
-            var TOKEN = "";
+            var TOKEN = "NDI0NDE0MzAxMjAyMjg0NTQ1.DaMi3w.JyMFN5GuCgm5Nls_Tb194MWIVdg";
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);
             await Client.StartAsync();
