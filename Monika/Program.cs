@@ -189,8 +189,8 @@ namespace Monika
             Client.MessageReceived += MessageReceived;
             Client.Ready += Ready;
 
-            // var TOKEN = Tokens.Release;;
-            var TOKEN = "NDI0NDE0MzAxMjAyMjg0NTQ1.DaMi3w.JyMFN5GuCgm5Nls_Tb194MWIVdg";
+            // var TOKEN = Tokens.Release;
+            var TOKEN = "";
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);
             await Client.StartAsync();
