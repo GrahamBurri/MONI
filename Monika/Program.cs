@@ -1,22 +1,36 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Collections.Immutable;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using MarkovNextGen;
 using Newtonsoft.Json;
-using Monika.IdentityController;
 using Monika.AdminController;
 
 namespace Monika
 {
     class Program
     {
-        public static void Main(string[] args) // Any reason for this to be non-public?
+        public static void Main(string[] args)
         {
+
+            // Generate reversion pdo
+            /*
+            var chr = new Character();
+            chr.Name = "Sayori";
+            chr.Avatar = "Data\\Sayori\\25.png";
+            chr.Personality = "Data\\Sayori\\edgy.pdo";
+            chr.Responses = new List<string>();
+            chr.PdoFiles = new Dictionary<string, string>();
+            chr.PdoFiles.Add("default", "Data\\Sayori\\edgy.pdo");
+            chr.Emotions = new Dictionary<string, string>();
+            chr.Emotions.Add("default", "Data\\Sayori\\25.png");
+            var chr_json = JsonConvert.SerializeObject(chr, Formatting.Indented);
+            File.WriteAllText("sayoritest.pdo", chr_json);
+            */
+
             var mkbot = new MonikaBot();
             mkbot.MainAsync().GetAwaiter().GetResult(); // Just let it run in background
 
@@ -29,7 +43,6 @@ namespace Monika
             }
 
             AdminConsole admin = new AdminConsole();
-            mkbot.Personality = new Personality(mkbot.Client);
 
             admin.Client = mkbot.Client;
             admin.Generator = mkbot.Generator;
@@ -48,16 +61,10 @@ namespace Monika
 
     public class MonikaBot
     {
-        const string TOKFILE = "tokens.pdo";
+        const string TOKFILE = "default.tokens.pdo";
         Random randy = new Random();
 
-        public Markov Generator { get; private set; } = new Markov();
-        public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
-        public Personality Personality { get; set; }
-        public List<String> ResponsesList { get; set; }
-        public Boolean IsReady { get; private set; } = false;
-
-        TokenSet Tokens
+        private TokenSet Tokens
         {
             get
             {
@@ -74,6 +81,33 @@ namespace Monika
                 }
             }
         }
+
+        public Markov Generator { get; private set; } = new Markov();
+        public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
+        public List<String> ResponsesList { get; set; }
+        public Boolean IsReady { get; private set; } = false;
+        public Character CurrentCharacter { get; set; }
+        public Personality Personality { get; set; }
+
+        public MonikaBot()
+        {
+            // Maybe initialize ResponsesList
+            ResponsesList = new List<string>();
+            CurrentCharacter = CharacterCreator.Default;
+
+            Personality = new Personality(Client);
+        }
+
+        public MonikaBot(string path)
+        {
+            Generator = new Markov(path);
+            ResponsesList = new List<string>();
+            CurrentCharacter = CharacterCreator.Default;
+            CurrentCharacter.Personality = path;
+
+            Personality = new Personality(Client);
+        }
+
         public static Boolean TaggedIn(SocketMessage msg, String username)
         {
             var _tagged = false;
@@ -106,7 +140,6 @@ namespace Monika
             var info = new ChannelInfo(server, name, id);
             channels.Add(info);
             var json = JsonConvert.SerializeObject(channels, Formatting.Indented);
-            Console.WriteLine(json); // for now
             File.WriteAllText("channels.pdo", json);
         }
 
@@ -122,19 +155,19 @@ namespace Monika
 
             if (author != Client.CurrentUser.Username) // Don't process our own messages
             {
-                // Check if channel exists in our file
-                var matches = GetChannels().Where(c => c.Id == msg.Channel.Id).ToList();
-                if (matches.Count == 0) // If the channel isn't already in the list
-                {
-                    if (msg.Channel is SocketGuildChannel) // Only returns true we're in a server as opposed to DM or gorup chat
-                    {
-                        var guildchannel = msg.Channel as SocketGuildChannel;
-                        AddChannel(guildchannel.Guild.Name, guildchannel.Name, msg.Channel.Id);
-                    }
-                }
-
                 if (TaggedIn(msg, Client.CurrentUser.Username))
                 {
+                    // Check if channel exists in our file
+                    var matches = GetChannels().Where(c => c.Id == msg.Channel.Id).ToList();
+                    if (matches.Count == 0) // If the channel isn't already in the list
+                    {
+                        if (msg.Channel is SocketGuildChannel) // Only returns true we're in a server as opposed to DM or gorup chat
+                        {
+                            var guildchannel = msg.Channel as SocketGuildChannel;
+                            AddChannel(guildchannel.Guild.Name, guildchannel.Name, msg.Channel.Id);
+                        }
+                    }
+
                     if (text.Contains(" say "))
                     {
                         var response = text.Substring(text.IndexOf("say") + 4);
@@ -149,17 +182,68 @@ namespace Monika
                             await msg.Channel.SendMessageAsync(response);
                         }
                     }
+                    else if (text.Contains(" be "))
+                    {
+                        var rest = text.Substring(text.IndexOf("be") + 3);
+                        var avatar = (CurrentCharacter.Emotions.ContainsKey(rest)) ? CurrentCharacter.Emotions[rest] : CurrentCharacter.Emotions["default"];
+                        await Personality.SetAvatar(avatar);
+                    }
+                    else if (text.Contains(" act "))
+                    {
+                        var rest = text.Substring(text.IndexOf("act") + 4);
+                        var pdo = (CurrentCharacter.PdoFiles.ContainsKey(rest)) ? CurrentCharacter.PdoFiles[rest] : CurrentCharacter.PdoFiles["default"];
+                        // Shove pdo into markov chain, need to update nextgen first
+                        // For now v
+                        if (File.Exists(pdo))
+                        {
+                            var contents = File.ReadAllText(pdo);
+                            var chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
+                            Generator.AddToChain(chain);
+                        }
+                    }
                     else if (text.Contains(" nick "))
                     {
                         var ss = text.Substring(text.IndexOf("nick") + 5);
                         // We'll need a check to make sure no one else was tagged
+                        // Done
                         foreach (var usr in msg.MentionedUsers)
                         {
-                            await (usr as IGuildUser).ModifyAsync(x => x.Nickname = ss);
+                            if (usr.Username == Client.CurrentUser.Username)
+                            {
+                                await (usr as IGuildUser).ModifyAsync(x => x.Nickname = ss);
+                            }
+                        }
+                    }
+                    else if (text.Contains(" load "))
+                    {
+                        var chr = text.Substring(text.IndexOf("load") + 5);
+                        if (File.Exists(chr))
+                        {
+                            CurrentCharacter = CharacterCreator.CreateCharacter(chr);
+                            await Personality.SetAvatar(CurrentCharacter.Avatar);
+                            if (File.Exists(CurrentCharacter.Personality))
+                            {
+                                var contents = File.ReadAllText(CurrentCharacter.Personality);
+                                var chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
+                                Generator.AddToChain(chain); // For Now
+                            }
+                            foreach (var usr in msg.MentionedUsers)
+                            {
+                                if (usr.Username == Client.CurrentUser.Username)
+                                {
+                                    await (usr as IGuildUser).ModifyAsync(x => x.Nickname = CurrentCharacter.Name);
+                                }
+                            }
                         }
                     }
                     else
                     {
+                        if (ResponsesList.Count > 0) // If we have responses
+                        {
+                            var line = ResponsesList.RandomElement();
+                            var response = line.Replace("[player]", msg.Author.Mention);
+                            await msg.Channel.SendMessageAsync(response);
+                        }
                         // var line = Lines.VoiceLines.RandomElement<string>(); TODO FIX THIS SHIT
                         // var response = line.Replace("[player]", msg.Author.Mention);
                         // await msg.Channel.SendMessageAsync(response);
@@ -180,6 +264,7 @@ namespace Monika
         }
         public async Task Ready()
         {
+            CurrentCharacter.Name = Client.CurrentUser.Username;
             IsReady = true; // Tell Main() to continue
         }
         public async Task MainAsync()
@@ -189,8 +274,7 @@ namespace Monika
             Client.MessageReceived += MessageReceived;
             Client.Ready += Ready;
 
-            // var TOKEN = Tokens.Release;
-            var TOKEN = "";
+            var TOKEN = Tokens.Development;
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);
             await Client.StartAsync();
