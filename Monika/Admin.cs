@@ -61,7 +61,10 @@ namespace Monika.AdminController
                 Directory.CreateDirectory(manifest.Name + ".chr");
                 foreach (KeyValuePair<string, string> kvp in manifest.Files)
                 {
-                    File.Copy(kvp.Value, manifest.Name + ".chr\\" + kvp.Value);
+                    if (!File.Exists(manifest.Name + ".chr\\" + kvp.Value))
+                    {
+                        File.Copy(kvp.Value, manifest.Name + ".chr\\" + kvp.Value);
+                    }
                 }
                 File.Copy(rest, manifest.Name + ".chr\\" + rest);
             }
