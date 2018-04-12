@@ -53,6 +53,18 @@ namespace Monika.AdminController
             {
                 // Should list characters
             }
+            else if (cmd.StartsWith("bundle"))
+            {
+                var rest = cmd.Substring(7);
+                var contents = File.ReadAllText(rest);
+                var manifest = JsonConvert.DeserializeObject<ManifestNextGen>(contents);
+                Directory.CreateDirectory(manifest.Name + ".chr");
+                foreach (KeyValuePair<string, string> kvp in manifest.Files)
+                {
+                    File.Copy(kvp.Value, manifest.Name + ".chr\\" + kvp.Value);
+                }
+                File.Copy(rest, manifest.Name + ".chr\\" + rest);
+            }
             else if (cmd.StartsWith("say"))
             {
                 var rest = cmd.Substring(4);
@@ -80,8 +92,7 @@ namespace Monika.AdminController
                 if (File.Exists(rest))
                 {
                     var jsonfrom = File.ReadAllText(rest);
-                    var from = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
-                    Generator.AddToChain(from);
+                    Generator.Chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(jsonfrom);
                 }
                 else
                 {

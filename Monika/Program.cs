@@ -86,15 +86,13 @@ namespace Monika
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
         public List<String> ResponsesList { get; set; }
         public Boolean IsReady { get; private set; } = false;
-        public Character CurrentCharacter { get; set; }
+        public String CurrentCharacter { get; set; } = "Sayori";
         public Personality Personality { get; set; }
 
         public MonikaBot()
         {
             // Maybe initialize ResponsesList
             ResponsesList = new List<string>();
-            CurrentCharacter = CharacterCreator.Default;
-
             Personality = new Personality(Client);
         }
 
@@ -102,9 +100,6 @@ namespace Monika
         {
             Generator = new Markov(path);
             ResponsesList = new List<string>();
-            CurrentCharacter = CharacterCreator.Default;
-            CurrentCharacter.Personality = path;
-
             Personality = new Personality(Client);
         }
 
@@ -119,6 +114,21 @@ namespace Monika
                 }
             }
             return _tagged;
+        }
+
+        public ManifestNextGen GetManifestByName(string name)
+        {
+            var filename = String.Format("{0}.chr\\{0}.pdo", name);
+            if (File.Exists(filename))
+            {
+                var contents = File.ReadAllText(filename);
+                return JsonConvert.DeserializeObject<ManifestNextGen>(contents);
+            }
+            else
+            {
+                var contents = File.ReadAllText("Sayori.chr\\Sayori.pdo");
+                return JsonConvert.DeserializeObject<ManifestNextGen>(contents);
+            }
         }
 
         public List<ChannelInfo> GetChannels()
@@ -185,20 +195,19 @@ namespace Monika
                     else if (text.Contains(" be "))
                     {
                         var rest = text.Substring(text.IndexOf("be") + 3);
-                        var avatar = (CurrentCharacter.Emotions.ContainsKey(rest)) ? CurrentCharacter.Emotions[rest] : CurrentCharacter.Emotions["default"];
+                        var man = GetManifestByName(CurrentCharacter);
+                        var avatar = (man.Files.ContainsKey(rest)) ? (man.Name + ".chr\\" + man.Files[rest]) : (man.Name + ".chr\\" + man.Files["_avatar"]);
                         await Personality.SetAvatar(avatar);
                     }
                     else if (text.Contains(" act "))
                     {
                         var rest = text.Substring(text.IndexOf("act") + 4);
-                        var pdo = (CurrentCharacter.PdoFiles.ContainsKey(rest)) ? CurrentCharacter.PdoFiles[rest] : CurrentCharacter.PdoFiles["default"];
-                        // Shove pdo into markov chain, need to update nextgen first
-                        // For now v
+                        var man = GetManifestByName(CurrentCharacter);
+                        var pdo = (man.Files.ContainsKey(rest)) ? (man.Name + ".chr\\" + man.Files[rest]) : (man.Name + ".chr\\" + man.Files["_markov"]);
                         if (File.Exists(pdo))
                         {
                             var contents = File.ReadAllText(pdo);
-                            var chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
-                            Generator.AddToChain(chain);
+                            Generator.Chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
                         }
                     }
                     else if (text.Contains(" nick "))
@@ -217,22 +226,21 @@ namespace Monika
                     else if (text.Contains(" load "))
                     {
                         var chr = text.Substring(text.IndexOf("load") + 5);
-                        if (File.Exists(chr))
+                        var name = Path.GetFileNameWithoutExtension(chr);
+                        CurrentCharacter = name;
+                        var man = (Directory.Exists(name + ".chr")) ? GetManifestByName(name) : GetManifestByName("Sayori");
+                        await Personality.SetAvatar(man.Name + ".chr\\" + man.Files["_avatar"]);
+                        var pdofile = man.Name + ".chr\\" + man.Files["_markov"];
+                        if (File.Exists(pdofile))
                         {
-                            CurrentCharacter = CharacterCreator.CreateCharacter(chr);
-                            await Personality.SetAvatar(CurrentCharacter.Avatar);
-                            if (File.Exists(CurrentCharacter.Personality))
+                            var contents = File.ReadAllText(pdofile);
+                            Generator.Chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
+                        }
+                        foreach (var usr in msg.MentionedUsers)
+                        {
+                            if (usr.Username == Client.CurrentUser.Username)
                             {
-                                var contents = File.ReadAllText(CurrentCharacter.Personality);
-                                var chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
-                                Generator.AddToChain(chain); // For Now
-                            }
-                            foreach (var usr in msg.MentionedUsers)
-                            {
-                                if (usr.Username == Client.CurrentUser.Username)
-                                {
-                                    await (usr as IGuildUser).ModifyAsync(x => x.Nickname = CurrentCharacter.Name);
-                                }
+                                await (usr as IGuildUser).ModifyAsync(x => x.Nickname = man.Name);
                             }
                         }
                     }
@@ -264,7 +272,7 @@ namespace Monika
         }
         public async Task Ready()
         {
-            CurrentCharacter.Name = Client.CurrentUser.Username;
+            CurrentCharacter = Client.CurrentUser.Username;
             IsReady = true; // Tell Main() to continue
         }
         public async Task MainAsync()
