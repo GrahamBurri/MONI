@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace Monika
 {
-    public class ManifestNextGen
+    public class Manifest
     {
         public string Name { get; set; }
         public Dictionary<string, string> Files { get; set; }
         public List<string> Responses { get; set; }
 
-        public ManifestNextGen()
+        public Manifest()
         {
             Name = String.Empty;
             Files = new Dictionary<string, string>();

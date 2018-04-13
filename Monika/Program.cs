@@ -116,18 +116,18 @@ namespace Monika
             return _tagged;
         }
 
-        public ManifestNextGen GetManifestByName(string name)
+        public Manifest GetManifestByName(string name)
         {
             var filename = String.Format("{0}.chr\\{0}.pdo", name);
             if (File.Exists(filename))
             {
                 var contents = File.ReadAllText(filename);
-                return JsonConvert.DeserializeObject<ManifestNextGen>(contents);
+                return JsonConvert.DeserializeObject<Manifest>(contents);
             }
             else
             {
                 var contents = File.ReadAllText("Sayori.chr\\Sayori.pdo");
-                return JsonConvert.DeserializeObject<ManifestNextGen>(contents);
+                return JsonConvert.DeserializeObject<Manifest>(contents);
             }
         }
 
