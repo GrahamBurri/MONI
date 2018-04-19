@@ -57,7 +57,7 @@ namespace Monika.AdminController
             {
                 var rest = cmd.Substring(7);
                 var contents = File.ReadAllText(rest);
-                var manifest = JsonConvert.DeserializeObject<Manifes>(contents);
+                var manifest = JsonConvert.DeserializeObject<Manifest>(contents);
                 Directory.CreateDirectory(manifest.Name + ".chr");
                 foreach (KeyValuePair<string, string> kvp in manifest.Files)
                 {
