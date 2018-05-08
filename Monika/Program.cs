@@ -86,7 +86,11 @@ namespace Monika
         public DiscordSocketClient Client { get; private set; } = new DiscordSocketClient();
         public List<String> ResponsesList { get; set; }
         public Boolean IsReady { get; private set; } = false;
-        public String CurrentCharacter { get; set; } = "Sayori";
+        public String CurrentCharacter
+        {
+            get => File.ReadAllText("character.k");
+            set => File.WriteAllText("character.k", value);
+        }
         public Personality Personality { get; set; }
 
         public MonikaBot()
@@ -208,6 +212,7 @@ namespace Monika
                         {
                             var contents = File.ReadAllText(pdo);
                             Generator.Chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
+                            Generator.Dump("markov.pdo");
                         }
                     }
                     else if (text.Contains(" nick "))
@@ -235,6 +240,7 @@ namespace Monika
                         {
                             var contents = File.ReadAllText(pdofile);
                             Generator.Chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
+                            Generator.Dump("markov.pdo");
                         }
                         foreach (var usr in msg.MentionedUsers)
                         {
