@@ -206,11 +206,15 @@ namespace Monika
                     else if (text.Contains(" act "))
                     {
                         var rest = text.Substring(text.IndexOf("act") + 4);
+                        Console.WriteLine(CurrentCharacter);
                         var man = GetManifestByName(CurrentCharacter);
+                        Console.WriteLine(man.Name);
                         var pdo = (man.Files.ContainsKey(rest)) ? (man.Name + ".chr\\" + man.Files[rest]) : (man.Name + ".chr\\" + man.Files["_markov"]);
                         if (File.Exists(pdo))
                         {
                             var contents = File.ReadAllText(pdo);
+                            Console.WriteLine(pdo);
+                            Console.WriteLine(contents);
                             Generator.Chain = JsonConvert.DeserializeObject<Dictionary<string, Link>>(contents);
                             Generator.Dump("markov.pdo");
                         }
@@ -278,7 +282,7 @@ namespace Monika
         }
         public async Task Ready()
         {
-            CurrentCharacter = Client.CurrentUser.Username;
+            //CurrentCharacter = Client.CurrentUser.Username;
             IsReady = true; // Tell Main() to continue
         }
         public async Task MainAsync()
