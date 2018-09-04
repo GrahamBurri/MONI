@@ -181,7 +181,23 @@ namespace Monika
                             AddChannel(guildchannel.Guild.Name, guildchannel.Name, msg.Channel.Id);
                         }
                     }
-
+                    if (text.Contains(" make me "))
+                    {
+                        string rest = text.Substring(text.IndexOf("me " + 1));
+                        SocketGuildChannel SGC = msg.Channel as SocketGuildChannel;
+                        SocketGuild SG = SGC.Guild;
+                        List<String> roleNames = new List<String>();
+                        for(int i = 0; i < SG.Roles.Count; i++)
+                        {
+                            if (SG.Roles.ElementAt(i).Name.ToLower().Trim(' ').Equals(rest.ToLower().Trim(' ')))
+                            {
+                                Console.WriteLine(SG.Roles.ElementAt(i).Name.ToString());
+                                await (msg.Author as IGuildUser).AddRoleAsync(SG.Roles.ElementAt(i));
+                                await msg.Channel.SendMessageAsync("Added " + author + " to " + SG.Roles.ElementAt(i).Name.ToString() + "!");
+                            }
+                        }
+                        
+                    }
                     if (text.Contains(" say "))
                     {
                         var response = text.Substring(text.IndexOf("say") + 4);
@@ -203,7 +219,7 @@ namespace Monika
                         var avatar = (man.Files.ContainsKey(rest)) ? (man.Name + ".chr\\" + man.Files[rest]) : (man.Name + ".chr\\" + man.Files["_avatar"]);
                         await Personality.SetAvatar(avatar);
                     }
-                    else if (text.Contains(" act "))
+                    else if (text.Contains(" act ")) // what does this do????
                     {
                         var rest = text.Substring(text.IndexOf("act") + 4);
                         Console.WriteLine(CurrentCharacter);
@@ -308,8 +324,8 @@ namespace Monika
 
         public TokenSet(String dev, String release)
         {
-            Development = dev;
-            Release = release;
+            Development = "";
+            Release = "";
         }
 
         public TokenSet()
