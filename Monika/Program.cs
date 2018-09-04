@@ -15,6 +15,7 @@ namespace Monika
     {
         public static void Main(string[] args)
         {
+            // TODO- modernize this- try to remove old redundant/vapor code
 
             // Generate reversion pdo
             /*
@@ -68,17 +69,18 @@ namespace Monika
         {
             get
             {
-                if (!File.Exists(TOKFILE))
+                //if (!File.Exists(TOKFILE))
+                if (true)
                 {
-                    const string DEVELOPMENT = "Dev Token Here";
-                    const string RELEASE = "Release Token Here";
+                    const string DEVELOPMENT = "";
+                    const string RELEASE = "";
                     return new TokenSet(DEVELOPMENT, RELEASE);
                 }
-                else
-                {
-                    var json = File.ReadAllText(TOKFILE);
-                    return JsonConvert.DeserializeObject<TokenSet>(json);
-                }
+                //else
+                //{
+                //    var json = File.ReadAllText(TOKFILE);
+                //    return JsonConvert.DeserializeObject<TokenSet>(json);
+                //}
             }
         }
 
@@ -183,20 +185,45 @@ namespace Monika
                     }
                     if (text.Contains(" make me "))
                     {
-                        string rest = text.Substring(text.IndexOf("me " + 1));
+                        string rest = text.Remove(0, (text.IndexOf("me") + 3));
                         SocketGuildChannel SGC = msg.Channel as SocketGuildChannel;
                         SocketGuild SG = SGC.Guild;
                         List<String> roleNames = new List<String>();
-                        for(int i = 0; i < SG.Roles.Count; i++)
+
+                        rest = rest.Trim(' ');
+                        rest = rest.ToLower();
+
+                        for(int i = 0; i < SG.Roles.Count; i++) // This can probably be made more efficent. I don't like processing all these conditionals inside the loop.
                         {
-                            if (SG.Roles.ElementAt(i).Name.ToLower().Trim(' ').Equals(rest.ToLower().Trim(' ')))
+                            if (SG.Roles.ElementAt(i).Name.ToLower().Trim(' ').Equals(rest))
                             {
-                                Console.WriteLine(SG.Roles.ElementAt(i).Name.ToString());
-                                await (msg.Author as IGuildUser).AddRoleAsync(SG.Roles.ElementAt(i));
-                                await msg.Channel.SendMessageAsync("Added " + author + " to " + SG.Roles.ElementAt(i).Name.ToString() + "!");
+                                // TODO: Implement blacklist?
+                                if (SG.Roles.ElementAt(i).Permissions.Has(GuildPermission.Administrator))
+                                {
+                                    await msg.Channel.SendMessageAsync("Nice try!");
+                                    break;
+                                }
+                                else
+                                {
+                                    if ((msg.Author as IGuildUser).RoleIds.Contains(SG.Roles.ElementAt(i).Id))
+                                    {
+                                        await (msg.Channel.SendMessageAsync("You already have this role!"));
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        await (msg.Author as IGuildUser).AddRoleAsync(SG.Roles.ElementAt(i));
+                                        await msg.Channel.SendMessageAsync("Added " + author + " to " + SG.Roles.ElementAt(i).Name.ToString() + "!");
+                                        break;
+                                    }
+
+                                }
+                            }
+                            else if (i == SG.Roles.Count - 1)
+                            {
+                                await msg.Channel.SendMessageAsync("Error: role \"" + rest + "\" does not exist.");
                             }
                         }
-                        
                     }
                     if (text.Contains(" say "))
                     {
@@ -308,7 +335,7 @@ namespace Monika
             Client.MessageReceived += MessageReceived;
             Client.Ready += Ready;
 
-            var TOKEN = Tokens.Development;
+            var TOKEN = "";
 
             await Client.LoginAsync(TokenType.Bot, TOKEN);
             await Client.StartAsync();
