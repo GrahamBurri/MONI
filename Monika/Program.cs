@@ -225,6 +225,17 @@ namespace Monika
                             }
                         }
                     }
+                    if(text.ToLower().Contains("print roles"))
+                    {
+                        SocketGuildChannel SGC = msg.Channel as SocketGuildChannel;
+                        SocketGuild SG = SGC.Guild;
+                        string roleNames = "Roles:\n```yaml\n";
+                        for(int i = 1; i < SG.Roles.Count; i++)
+                        {
+                            roleNames = (roleNames + ((SG.Roles.ElementAt(i).ToString()) + "\n"));
+                        }
+                        roleNames = roleNames + "\n```";
+                    }
                     if (text.Contains(" say "))
                     {
                         var response = text.Substring(text.IndexOf("say") + 4);
